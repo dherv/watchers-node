@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --ignore-watch .next --project tsconfig.server.json server.ts",
-    "build": "NODE_ENV=production tsc --project tsconfig.server.json && next build && node ./build/server.js"
+    "start": "ts-node-dev --ignore-watch .next --project tsconfig.server.json ./src/server.ts",
+    "build": "NODE_ENV=production tsc --project tsconfig.server.json && next build && node ./build/server.js",
+    "test": "jest --passWithNoTests"
   },
   "keywords": [],
   "author": "",
@@ -21,10 +22,18 @@
     "ts-node": "^8.4.1"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/express": "^4.17.1",
+    "@types/jest": "^24.0.18",
     "@types/node": "^12.7.12",
     "@types/react": "^16.9.5",
     "@types/socket.io": "^2.1.4",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.2",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
     "ts-node-dev": "^1.0.0-pre.43",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",

@@ -70,5 +70,5 @@
     "resolveJsonModule": true
   },
   "exclude": ["node_modules", "build", "pages", "test", ".next"],
-  "include": ["server.ts"]
+  "include": ["**/*.ts"]
 }
