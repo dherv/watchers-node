@@ -1,6 +1,7 @@
 version: "3.3"
 services:
   app:
+    container_name: app
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,6 +11,15 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     restart: always
-  #   depends_on:
-  #   - database
-  # database
+    depends_on:
+      - database
+  database:
+    container_name: database
+    image: mongo:latest
+    volumes:
+      - ./data/db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - 27017:27017
