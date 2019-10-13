@@ -3,6 +3,7 @@
 import express from "express";
 // import socketIo from "socket.io"
 import next, { NextApiRequest, NextApiResponse } from "next"
+import mongoose from "mongoose"
 const app = express();
 // explicitly create the http server and pass the express app to it
 const server = require("http").Server(app);
@@ -16,6 +17,16 @@ const nextHandler = nextApp.getRequestHandler();
 const dotenv = require("dotenv");
 dotenv.config();
 const port = process.env.PORT;
+
+// mongodb
+mongoose.connect("mongodb://root:example@database:27017/watchers?authSource=admin", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+mongoose.connection.once("open", () => {
+  console.log("connection to database");
+});
+
 
 // Sockets - // Sockets - io.sockets.on("connect", socket => {...})
 
