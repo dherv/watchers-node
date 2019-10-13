@@ -1,12 +1,14 @@
-"use strict";
-
-const app = require("express")();
+// "use strict";
+// var express = require("express");
+import express from "express";
+// import socketIo from "socket.io"
+import next, { NextApiRequest, NextApiResponse } from "next"
+const app = express();
 // explicitly create the http server and pass the express app to it
 const server = require("http").Server(app);
 // then pass the server to socket.io
-const io = require("socket.io")(server);
+// const io = socketIo(server);
 // setup next variables
-const next = require("next");
 const dev = process.env.NODE_ENV != "production";
 const nextApp = next({ dev });
 const nextHandler = nextApp.getRequestHandler();
@@ -19,11 +21,11 @@ const port = process.env.PORT;
 
 // Next
 nextApp.prepare().then(() => {
-  app.get("*", (req, res) => {
+  app.get("*", (req: NextApiRequest, res: NextApiResponse) => {
     return nextHandler(req, res);
   });
 
-  server.listen(port, err => {
+  server.listen(port, (err: Error) => {
     if (err) throw err;
     console.log(`Application now running on port: ${port}`);
   });
