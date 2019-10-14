@@ -21,7 +21,7 @@ dotenv.config();
 const port = process.env.PORT;
 
 // mongodb
-mongoose.connect("mongodb://root:example@database:27017/watchers?authSource=admin", {
+mongoose.connect("mongodb://root:example@watchers_database:27017/watchers?authSource=admin", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

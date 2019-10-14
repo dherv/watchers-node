@@ -1,13 +1,11 @@
-import mongoose, { Document } from "mongoose"
+import mongoose from "mongoose"
+import { IMovieModel } from "../../interfaces/Movie";
+
 const Schema = mongoose.Schema;
 
-interface IMovie extends Document {
-    name: String,
-    genre: String,
-}
 const movieSchema = new Schema({
     name: String,
     genre: String,
 });
 
-export default mongoose.model<IMovie>('Movie', movieSchema);
+export default mongoose.model<IMovieModel>('Movie', movieSchema);
