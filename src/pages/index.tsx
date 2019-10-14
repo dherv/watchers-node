@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import MovieList from "../components/MovieList";
 
-const Index = () => <Container>
-    <MovieList/>
-</Container>;
+const Index = () => (
+  <Container>
+    <MovieList />
+  </Container>
+);
 
 const Container = styled.div`
- background-color: blue
-`
+  background-color: var(--main-background);
+`;
 export default Index;
