@@ -19,6 +19,7 @@ export default class MyDocument extends Document {
     html {
         box-sizing: border-box;
         font-size: 16px;
+        background-color: var(--main-background)
       }
       
       *,

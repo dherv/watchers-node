@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { getMovies } from "../queries/queries";
+import { getMovies } from "../graphql/queries/queries";
 import { IMovie } from "../interfaces/Movie";
 
 const MovieList = () => {
