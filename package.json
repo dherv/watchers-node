@@ -2,9 +2,10 @@
   "name": "watchers-node",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "ts-node-dev --ignore-watch .next --project tsconfig.server.json ./src/app.ts",
+    "start": "ts-node --project tsconfig.server.json ./src/server/app.ts next start",
+    "watch": "ts-node-dev --ignore-watch .next --project tsconfig.server.json ./src/server/app.ts",
     "build": "NODE_ENV=production tsc --project tsconfig.server.json && next build && node ./build/app.js",
     "test": "jest --passWithNoTests"
   },

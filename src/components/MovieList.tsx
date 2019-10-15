@@ -9,7 +9,7 @@ const MovieList = () => {
     return loading ? (
       <div>loading movies...</div>
     ) : (
-      data.movies.map(item => <li>{item.name}</li>)
+      data.movies.map(item => <li key={item.id}>{item.name}</li>)
     );
   };
   return (

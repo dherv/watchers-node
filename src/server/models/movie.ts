@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 import { IMovieModel } from "../../interfaces/Movie";
 
 const Schema = mongoose.Schema;
