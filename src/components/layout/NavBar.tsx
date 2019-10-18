@@ -5,14 +5,16 @@ import styled from "styled-components";
 
 const Navbar = () => (
   <Nav>
-    <Logo></Logo>
-    <Menu></Menu>
+    <Logo />
+    <Menu />
   </Nav>
 );
 
-const Nav = styled.nav`
+export const Nav = styled.nav`
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+  padding: 12px;
 `;
 
 export default Navbar;

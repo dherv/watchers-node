@@ -15,7 +15,7 @@ class MyApp extends App<IProps> {
       <ApolloProvider client={apollo}>
         <Head>
           <link
-            href="https://fonts.googleapis.com/css?family=Barlow:300,400,600|Raleway:300,400,500,600,700&display=swap"
+            href="https://fonts.googleapis.com/css?family=Barlow:300,400,600|Raleway:100,300,400,500,600,700&display=swap"
             rel="stylesheet"
           />
         </Head>
