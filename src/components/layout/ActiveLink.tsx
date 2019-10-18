@@ -1,20 +1,45 @@
 import { useRouter } from "next/router";
+import styled from "styled-components";
 
-export default function ActiveLink({ children, href }) {
+const ActiveLink = ({ children, href }) => {
   const router = useRouter();
-  const style = {
-    marginRight: 10,
-    color: router.pathname === href ? "red" : ""
-  };
 
-  const handleClick = e => {
-    e.preventDefault();
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
     router.push(href);
   };
 
   return (
-    <a href={href} onClick={handleClick} style={style}>
-      {children}
-    </a>
+    <ListItem href={href} path={router.pathname}>
+      <Anchor href={href} onClick={handleClick} height={60}>
+        {children}
+      </Anchor>
+    </ListItem>
   );
-}
+};
+
+const Anchor = styled.a<{ href: string; height: number }>`
+  height: ${props => props.height}px;
+  line-height: ${props => props.height}px;
+  width: 100%;
+`;
+
+const ListItem = styled.li<{ path: string; href: string }>`
+  font-weight: 100;
+  font-size: 1.1rem;
+  margin: 0 4rem;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-width: 2px;
+    border-style: solid;
+    border-color: ${props =>
+      props.path === props.href ? "#2e8e89" : "transparent"};
+  }
+`;
+export { Anchor, ListItem };
+export default ActiveLink;

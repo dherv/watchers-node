@@ -2,6 +2,7 @@ const TEST_REGEX = "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|js?|tsx?|ts?)$";
 
 module.exports = {
   setupFiles: ["<rootDir>/jest.setup.js"],
+  snapshotSerializers: ["enzyme-to-json/serializer"],
   testRegex: TEST_REGEX,
   transform: {
     "^.+\\.tsx?$": "babel-jest"

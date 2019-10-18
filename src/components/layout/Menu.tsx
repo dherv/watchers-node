@@ -4,31 +4,19 @@ import styled from "styled-components";
 
 const Menu = () => (
   <List>
-    <ListItem>
-      <ActiveLink href="/movies">movies</ActiveLink>
-    </ListItem>
-    <ListItem>
-      <ActiveLink href="/series">series</ActiveLink>
-    </ListItem>
-    <ListItem>
-      <ActiveLink href="/watchlist">watchlist</ActiveLink>
-    </ListItem>
-    <ListItem>
-      <ActiveLink href="/likelist">likelist</ActiveLink>
-    </ListItem>
+    <ActiveLink href="/movies">movies</ActiveLink>
+    <ActiveLink href="/series">series</ActiveLink>
+    <ActiveLink href="/watchlist">watchlist</ActiveLink>
+    <ActiveLink href="/likelist">likelist</ActiveLink>
   </List>
 );
 
 const List = styled.ul`
   display: flex;
-  margin-left: 8rem;
+  align-items: center;
+  height: 100%;
+  margin-left: 7rem;
 `;
 
-const ListItem = styled.li`
-  font-weight: 100;
-  font-size: 1.1rem;
-  margin: 0 4rem;
-`;
-
-export { List, ListItem };
+export { List };
 export default Menu;

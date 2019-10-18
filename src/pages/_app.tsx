@@ -1,4 +1,4 @@
-import App, { Container } from "next/app";
+import App from "next/app";
 import Head from "next/head";
 import { ApolloProvider } from "@apollo/react-hooks";
 import withApollo from "../graphql/lib/withApollo";

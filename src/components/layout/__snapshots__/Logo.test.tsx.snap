@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo component snapshot should match 1`] = `
+.c0 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+<h1
+  className="c0"
+>
+  watchers
+</h1>
+`;

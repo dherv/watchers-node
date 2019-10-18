@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu component snapshot should match 1`] = `
+.c2 {
+  height: 60px;
+  line-height: 60px;
+  width: 100%;
+}
+
+.c1 {
+  font-weight: 100;
+  font-size: 1.1rem;
+  margin: 0 4rem;
+  position: relative;
+}
+
+.c1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  margin-left: 7rem;
+}
+
+<ul
+  className="c0"
+>
+  <li
+    className="c1"
+    href="/movies"
+  >
+    <a
+      className="c2"
+      height={60}
+      href="/movies"
+      onClick={[Function]}
+    >
+      movies
+    </a>
+  </li>
+  <li
+    className="c1"
+    href="/series"
+  >
+    <a
+      className="c2"
+      height={60}
+      href="/series"
+      onClick={[Function]}
+    >
+      series
+    </a>
+  </li>
+  <li
+    className="c1"
+    href="/watchlist"
+  >
+    <a
+      className="c2"
+      height={60}
+      href="/watchlist"
+      onClick={[Function]}
+    >
+      watchlist
+    </a>
+  </li>
+  <li
+    className="c1"
+    href="/likelist"
+  >
+    <a
+      className="c2"
+      height={60}
+      href="/likelist"
+      onClick={[Function]}
+    >
+      likelist
+    </a>
+  </li>
+</ul>
+`;
