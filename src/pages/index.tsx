@@ -1,11 +1,20 @@
 import React from "react";
-import MovieList from "../components/MovieList";
-import Layout from "../components/layout/Layout";
+import Router from "next/router";
 
-const Index = () => (
-  <Layout>
-    <MovieList />
-  </Layout>
-);
+const Index = () => {
+  return <div></div>;
+};
+
+Index.getInitialProps = async ({ res }) => {
+  if (res) {
+    res.writeHead(302, {
+      Location: "/movies"
+    });
+    res.end();
+  } else {
+    Router.push("/movies");
+  }
+  return {};
+};
 
 export default Index;

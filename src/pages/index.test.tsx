@@ -4,24 +4,36 @@ import renderer from "react-test-renderer";
 import "jest-styled-components";
 
 import Index from "./index";
-import MovieList from "../components/MovieList";
-import Layout from "../components/layout/Layout";
+import Router from "next/router";
+jest.mock("next/router", () => ({
+  push: jest.fn(),
+  prefetch: () => {},
+  route: "/",
+  pathname: ""
+}));
 
 describe("Index", () => {
-  const props = {};
-  const wrapper = shallow(<Index {...props} />);
+  const res = { writeHead: jest.fn(), end: jest.fn() };
 
   describe("Index component", () => {
     describe("user interface", () => {
-      test("should display one Layout component", () => {
-        expect.assertions(1);
-        expect(wrapper.find(Layout)).toHaveLength(1);
+      test("should redirect to /movies if called from server", async () => {
+        expect.assertions(2);
+        const props = await Index.getInitialProps({
+          res
+        });
+        const wrapper = shallow(<Index {...props} />);
+        expect(res.writeHead).toHaveBeenCalledWith(302, {
+          Location: "/movies"
+        });
+        expect(res.end).toHaveBeenCalledWith();
       });
 
-      test("should display one MovieList component inside Layout", () => {
+      test("should redirect to /movies if called from client", async () => {
         expect.assertions(1);
-        const layout = wrapper.find(Layout);
-        expect(layout.props().children).toEqual(<MovieList />);
+        const props = await Index.getInitialProps({ res: null });
+        const wrapper = shallow(<Index {...props} />);
+        expect(Router.push).toHaveBeenCalledWith("/movies");
       });
     });
     describe("events", () => {});
