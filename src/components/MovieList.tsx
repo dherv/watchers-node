@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { getMovies } from "../graphql/queries/queries";
 import { IMovie } from "../interfaces/Movie";
+import Card from "./card/Card";
 
 const MovieList = () => {
   const displayMovies = () => {
@@ -16,6 +17,7 @@ const MovieList = () => {
     <div>
       <h1>Movie</h1>
       <ul>{displayMovies()}</ul>
+      <Card></Card>
     </div>
   );
 };

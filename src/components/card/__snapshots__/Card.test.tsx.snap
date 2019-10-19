@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card snapshot should match 1`] = `
+Array [
+  .c1 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5%;
+  z-index: 10;
+}
+
+.c2 {
+  position: relative;
+  top: calc(20% - 67.88225099390857px / 2);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 67.88225099390857px;
+  height: 67.88225099390857px;
+}
+
+.c3 {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background-color: #2e8e89;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.c4 {
+  position: absolute;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #ececec;
+  z-index: 10;
+}
+
+.c5 {
+  position: absolute;
+  width: 4px;
+  background-color: var(--main-color-text);
+  opacity: 0.8;
+  z-index: 0;
+  top: 0;
+  left: 20%;
+  height: 20%;
+}
+
+.c6 {
+  position: absolute;
+  width: 4px;
+  background-color: var(--main-color-text);
+  opacity: 0.8;
+  z-index: 0;
+  bottom: 0;
+  right: 25%;
+  height: 80%;
+}
+
+.c0 {
+  position: relative;
+  width: 300px;
+}
+
+<div
+    className="c0"
+  >
+    <img
+      className=""
+      src="https://image.tmdb.org/t/p/w500/2bXbqYdUdNVa8VIWXVfclP2ICtT.jpg"
+    />
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+      >
+        <div
+          className="c3"
+          size={48}
+        />
+        <h5
+          className="c4"
+        >
+          8.3
+        </h5>
+      </div>
+      <div
+        className="c5"
+      />
+      <div
+        className="c6"
+      />
+    </div>
+  </div>,
+  <div />,
+]
+`;
