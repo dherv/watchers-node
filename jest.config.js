@@ -1,9 +1,13 @@
+const TEST_REGEX = "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|js?|tsx?|ts?)$";
+
 module.exports = {
-  roots: ["<rootDir>/src"],
-  transform: {
-    "^.+\\.tsx?$": "ts-jest"
-  },
-  // Setup Enzyme
+  setupFiles: ["<rootDir>/jest.setup.js"],
   snapshotSerializers: ["enzyme-to-json/serializer"],
-  setupFilesAfterEnv: ["<rootDir>/setupEnzyme.ts"]
+  testRegex: TEST_REGEX,
+  transform: {
+    "^.+\\.tsx?$": "babel-jest"
+  },
+  testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+  collectCoverage: false
 };

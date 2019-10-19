@@ -1,14 +1,20 @@
 import React from "react";
-import styled from "styled-components";
-import MovieList from "../components/MovieList";
+import Router from "next/router";
 
-const Index = () => (
-  <Container>
-    <MovieList />
-  </Container>
-);
+const Index = () => {
+  return <div></div>;
+};
 
-const Container = styled.div`
-  background-color: var(--main-background);
-`;
+Index.getInitialProps = async ({ res }) => {
+  if (res) {
+    res.writeHead(302, {
+      Location: "/movies"
+    });
+    res.end();
+  } else {
+    Router.push("/movies");
+  }
+  return {};
+};
+
 export default Index;
