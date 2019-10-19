@@ -23,11 +23,11 @@ describe("Card", () => {
     describe("events", () => {});
   });
 
-  describe("snapshot", () => {
-    test("should match", () => {
-      expect.assertions(1);
-      const tree = renderer.create(<Card {...props} />).toJSON();
-      expect(tree).toMatchSnapshot();
-    });
-  });
+  // describe("snapshot", () => {
+  //   test("should match", () => {
+  //     expect.assertions(1);
+  //     const tree = renderer.create(<Card {...props} />).toJSON();
+  //     expect(tree).toMatchSnapshot();
+  //   });
+  // });
 });

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CardImage snapshot should match 1`] = `
-.c1 {
+.c2 {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -9,7 +9,7 @@ exports[`CardImage snapshot should match 1`] = `
   z-index: 10;
 }
 
-.c2 {
+.c3 {
   position: relative;
   top: calc(20% - 67.88225099390857px / 2);
   display: -webkit-box;
@@ -28,7 +28,7 @@ exports[`CardImage snapshot should match 1`] = `
   height: 67.88225099390857px;
 }
 
-.c3 {
+.c4 {
   position: relative;
   width: 48px;
   height: 48px;
@@ -39,7 +39,7 @@ exports[`CardImage snapshot should match 1`] = `
   z-index: 1;
 }
 
-.c4 {
+.c5 {
   position: absolute;
   font-weight: 800;
   font-size: 1.2rem;
@@ -47,7 +47,7 @@ exports[`CardImage snapshot should match 1`] = `
   z-index: 10;
 }
 
-.c5 {
+.c6 {
   position: absolute;
   width: 4px;
   background-color: var(--main-color-text);
@@ -58,7 +58,7 @@ exports[`CardImage snapshot should match 1`] = `
   height: 20%;
 }
 
-.c6 {
+.c7 {
   position: absolute;
   width: 4px;
   background-color: var(--main-color-text);
@@ -71,35 +71,41 @@ exports[`CardImage snapshot should match 1`] = `
 
 .c0 {
   position: relative;
-  width: 300px;
+  border-radius: 10px 10px 0 0;
+}
+
+.c1 {
+  border-radius: 10px 10px 0 0;
 }
 
 <div
   className="c0"
 >
   <img
-    className=""
+    className="c1"
     src=""
   />
   <div
-    className="c1"
+    className="c2"
   >
     <div
-      className="c2"
+      className="c3"
     >
       <div
-        className="c3"
+        className="c4"
         size={48}
       />
       <h5
-        className="c4"
-      />
+        className="c5"
+      >
+        9
+      </h5>
     </div>
     <div
-      className="c5"
+      className="c6"
     />
     <div
-      className="c6"
+      className="c7"
     />
   </div>
 </div>

@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
       --secondary-font: "Barlow", sans-serif;
       --main-background: #212121;
       --main-color: #2E8E89;
-      --main-color-text: #fff
+      --main-color-text: #ececec
     }
 
     html {

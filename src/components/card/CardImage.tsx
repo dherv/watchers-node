@@ -11,8 +11,12 @@ const CardImage = ({ src, rating }: { src: string; rating: number }) => (
 
 const Container = styled.div`
   position: relative;
-  width: 300px;
+  border-radius: 10px 10px 0 0;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  border-radius: 10px 10px 0 0;
+`;
+
+export { Container, Image };
 export default CardImage;
