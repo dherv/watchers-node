@@ -3,16 +3,23 @@ import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
 import "jest-styled-components";
 
-import CardImage from "./CardImage";
+import CardImage, { Image } from "./CardImage";
+import CardRating from "./CardRating";
 
 describe("CardImage", () => {
-  const props = { src: "" };
+  const props = { src: "", rating: 9.0 };
   const wrapper = shallow(<CardImage {...props} />);
 
   describe("CardImage component", () => {
     describe("user interface", () => {
-      test("should display one CardRating", () => {});
-      test("should display an image with src = props.image_url", () => {});
+      test("should display one CardRating", () => {
+        expect.assertions(1);
+        expect(wrapper.find(CardRating)).toHaveLength(1);
+      });
+      test("should display an Image styled component with src = props.image_url", () => {
+        expect.assertions(1);
+        expect(wrapper.find(Image)).toHaveLength(1);
+      });
     });
     describe("events", () => {});
   });
