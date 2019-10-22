@@ -82,6 +82,7 @@ exports[`CardImage snapshot should match 1`] = `
   className="c0"
 >
   <img
+    alt="El Camino: A Breaking Bad Movie poster"
     className="c1"
     src=""
   />

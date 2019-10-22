@@ -25,7 +25,10 @@ const Container = styled.div`
 
 const Title = styled.h4`
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
 `;
 
 const ScoreContainer = styled.div`

@@ -7,7 +7,11 @@ import CardImage, { Image } from "./CardImage";
 import CardRating from "./CardRating";
 
 describe("CardImage", () => {
-  const props = { src: "", rating: 9.0 };
+  const props = {
+    src: "",
+    rating: 9.0,
+    title: "El Camino: A Breaking Bad Movie"
+  };
   const wrapper = shallow(<CardImage {...props} />);
 
   describe("CardImage component", () => {

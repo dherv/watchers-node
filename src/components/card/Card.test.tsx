@@ -8,7 +8,24 @@ import CardImage from "./CardImage";
 import CardContent from "./CardContent";
 
 describe("Card", () => {
-  const props = {};
+  const movie = {
+    popularity: 188.965,
+    vote_count: 901,
+    video: false,
+    poster_path: "/ePXuKdXZuJx8hHMNr2yM4jY2L7Z.jpg",
+    id: 559969,
+    adult: false,
+    backdrop_path: "/uLXK1LQM28XovWHPao3ViTeggXA.jpg",
+    original_language: "en",
+    original_title: "El Camino: A Breaking Bad Movie",
+    genre_ids: [80, 18, 53],
+    title: "El Camino: A Breaking Bad Movie",
+    vote_average: 7.2,
+    overview:
+      "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
+    release_date: "2019-10-11"
+  };
+  const props = { movie };
   const wrapper = shallow(<Card {...props} />);
 
   describe("Card component", () => {
@@ -23,11 +40,11 @@ describe("Card", () => {
     describe("events", () => {});
   });
 
-  // describe("snapshot", () => {
-  //   test("should match", () => {
-  //     expect.assertions(1);
-  //     const tree = renderer.create(<Card {...props} />).toJSON();
-  //     expect(tree).toMatchSnapshot();
-  //   });
-  // });
+  describe("snapshot", () => {
+    test("should match", () => {
+      expect.assertions(1);
+      const tree = renderer.create(<Card {...props} />).toJSON();
+      expect(tree).toMatchSnapshot();
+    });
+  });
 });
