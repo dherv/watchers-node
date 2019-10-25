@@ -5,6 +5,7 @@ import { render, waitForElement, wait } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 import MovieList, { Container } from "./MovieList";
+import moment from "moment";
 
 describe("MovieList", () => {
   const props = {};
@@ -63,6 +64,18 @@ describe("MovieList", () => {
         await waitForElement(() =>
           getByAltText("El Camino: A Breaking Bad Movie poster")
         );
+      });
+
+      test("fetch should be called with the right dates", () => {
+        const date_start = moment()
+          .subtract(1, "M")
+          .format("YYYY-MM-DD");
+        const date_end = moment()
+          .add(1, "M")
+          .format("YYYY-MM-DD");
+        const url = `https://api.themoviedb.org/3/discover/movie?api_key=7d452802073548c625912b988e9cffd6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=${date_start}&release_date.lte=${date_end}&with_release_type=4`;
+
+        expect(fetch).toHaveBeenCalledWith(url);
       });
     });
   });

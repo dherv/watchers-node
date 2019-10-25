@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { IMovie } from "../interfaces/Movie";
 import Card from "./card/Card";
 import styled from "styled-components";
+import moment from "moment";
 
 const MovieList = () => {
   const [movies, setMovies] = useState<IMovie[]>();
@@ -9,11 +10,18 @@ const MovieList = () => {
 
   useEffect(() => {
     fetchMovies();
+    return () => {};
   }, []);
 
   const fetchMovies = (): Promise<void> => {
-    const url =
-      "https://api.themoviedb.org/3/discover/movie?api_key=7d452802073548c625912b988e9cffd6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=2019-09-01&release_date.lte=2019-10-30&with_release_type=4";
+    const date_start = moment()
+      .subtract(1, "M")
+      .format("YYYY-MM-DD");
+    const date_end = moment()
+      .add(1, "M")
+      .format("YYYY-MM-DD");
+    console.log(date_end, date_start);
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=7d452802073548c625912b988e9cffd6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=${date_start}&release_date.lte=${date_end}&with_release_type=4`;
     return fetch(url)
       .then(response => response.json())
       .then(({ results }) => {
