@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
 import { useRouter } from "next/router";
 import { IMovie } from "../../interfaces/Movie";
-import Card from "../../components/card/Card";
+import Card, { cardRegularRotate } from "../../components/card/Card";
 import styled from "styled-components";
 import MovieContent from "../../components/MovieContent";
 
@@ -61,13 +61,16 @@ const MoviePage = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [movie_id]);
 
   return (
     loaded && (
       <Layout>
         <Container>
-          <Card movie={movie} />
+          <CardContainer>
+            <Card movie={movie} theme={cardRegularRotate} />
+          </CardContainer>
+
           <MovieContent
             movie={movie}
             cast={cast}
@@ -82,6 +85,11 @@ const MoviePage = () => {
 
 export const Container = styled.div`
   display: flex;
+  margin: 5rem;
+`;
+
+const CardContainer = styled.div`
+  margin-right: 8rem;
 `;
 
 export default MoviePage;

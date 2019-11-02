@@ -31,7 +31,11 @@ const MovieList = () => {
   };
 
   const displayMovies = () => {
-    return movies.map(movie => <Card key={movie.id} movie={movie} />);
+    return movies.map(movie => (
+      <CardContainer key={movie.id}>
+        <Card movie={movie} />
+      </CardContainer>
+    ));
   };
 
   return loaded && <Container>{displayMovies()}</Container>;
@@ -43,6 +47,10 @@ export const Container = styled.div`
   height: calc(100vh - 60px);
   margin: 0 4rem;
   overflow-x: scroll;
+`;
+
+const CardContainer = styled.div`
+  margin-right: 4rem;
 `;
 
 export default MovieList;

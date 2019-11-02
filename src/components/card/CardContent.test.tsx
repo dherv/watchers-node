@@ -6,7 +6,7 @@ import "jest-styled-components";
 import CardContent, { Title, Metacritic, IMDb } from "./CardContent";
 
 describe("CardContent", () => {
-  const props = { title: "Title" };
+  const props = { title: "Title", theme: {} };
   const wrapper = shallow(<CardContent {...props} />);
 
   describe("CardContent component", () => {

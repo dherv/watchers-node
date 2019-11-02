@@ -4,13 +4,7 @@ import "jest-styled-components";
 import MoviePage, { Container } from "./[movie_id]";
 import { NextRouter } from "next/router";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
-import {
-  render,
-  wait,
-  getByText,
-  cleanup,
-  getByAltText
-} from "@testing-library/react";
+import { render, wait, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 describe("movie_id", () => {
@@ -47,6 +41,16 @@ describe("movie_id", () => {
         credit_id: "5be34d7a0e0a2614ba01c2cb",
         gender: 2,
         id: 84497,
+        name: "Aaron Paul",
+        order: 0,
+        profile_path: "/u8UdsB9yenM4uHEjmce4nkBn48X.jpg"
+      },
+      {
+        cast_id: 4,
+        character: "Jesse Pinkman",
+        credit_id: "5be34d7a0e0a2614ba01c2cb",
+        gender: 2,
+        id: 84498,
         name: "Aaron Paul",
         order: 0,
         profile_path: "/u8UdsB9yenM4uHEjmce4nkBn48X.jpg"
@@ -169,8 +173,8 @@ describe("movie_id", () => {
             ).toHaveLength(2)
           );
         });
-        test("should fetch movie cast and display their names", async () => {
-          expect.assertions(2);
+        test("should fetch movie cast and display their names seperated by a comma", async () => {
+          expect.assertions(3);
           const { getByText } = render(
             <RouterContext.Provider value={router}>
               <MoviePage {...props} />
@@ -180,7 +184,11 @@ describe("movie_id", () => {
             2,
             "https://api.themoviedb.org/3/movie/559969/credits?api_key=7d452802073548c625912b988e9cffd6"
           );
-          await wait(() => expect(getByText("Aaron Paul")).toBeDefined());
+
+          await wait(() => {
+            expect(getByText("Aaron Paul,")).toBeDefined();
+            expect(getByText("Aaron Paul")).toBeDefined();
+          });
         });
         test("should fetch movie director and display his name", async () => {
           expect.assertions(2);
@@ -194,9 +202,7 @@ describe("movie_id", () => {
             "https://api.themoviedb.org/3/movie/559969/credits?api_key=7d452802073548c625912b988e9cffd6"
           );
 
-          await wait(() =>
-            expect(getByText("Director: Vince Gilligan")).toBeDefined()
-          );
+          await wait(() => expect(getByText("Vince Gilligan")).toBeDefined());
         });
         test("should fetch movie related movies and display the poster and name", async () => {
           expect.assertions(2);

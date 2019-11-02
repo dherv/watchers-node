@@ -9,17 +9,12 @@ exports[`CardContent snapshot should match 1`] = `
 
 .c1 {
   font-weight: 600;
-  font-size: 1.25rem;
   line-height: 1.5em;
   height: 3em;
   overflow: hidden;
 }
 
 .c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   margin-top: 1rem;
 }
 

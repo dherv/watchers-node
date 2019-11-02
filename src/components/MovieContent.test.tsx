@@ -89,7 +89,7 @@ describe("MovieContent", () => {
             <MovieContent {...props} />
           </RouterContext.Provider>
         );
-        await wait(() => expect(getByText("2019-10-11")).toBeDefined());
+        await wait(() => expect(getByText("October 11, 2019")).toBeDefined());
       });
       test("should display the movie overview", async () => {
         const { getByText } = render(
