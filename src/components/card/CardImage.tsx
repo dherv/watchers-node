@@ -5,15 +5,17 @@ import CardRating from "./CardRating";
 const CardImage = ({
   src,
   rating,
-  title
+  title,
+  theme
 }: {
   src: string;
   rating: number;
   title: string;
+  theme: any;
 }) => (
   <Container>
     <Image src={src} alt={`${title} poster`}></Image>
-    <CardRating size={48} rating={rating} />
+    <CardRating rating={rating} theme={theme} />
   </Container>
 );
 

@@ -1,15 +1,17 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 
-const CardRating = ({ size, rating }: { size: number; rating: number }) => (
-  <Container>
-    <SquareContainer diagonale={Math.sqrt(2) * size}>
-      <Square size={size}></Square>
-      <Rating>{rating}</Rating>
-    </SquareContainer>
-    <BorderDrop></BorderDrop>
-    <BorderRise></BorderRise>
-  </Container>
+const CardRating = ({ rating, theme }: { rating: number; theme: any }) => (
+  <ThemeProvider theme={theme}>
+    <Container>
+      <SquareContainer>
+        <Square></Square>
+        <Rating>{rating}</Rating>
+      </SquareContainer>
+      <BorderDrop></BorderDrop>
+      <BorderRise></BorderRise>
+    </Container>
+  </ThemeProvider>
 );
 
 const Container = styled.div`
@@ -20,20 +22,20 @@ const Container = styled.div`
   z-index: 10;
 `;
 
-const SquareContainer = styled.div<{ diagonale: number }>`
+const SquareContainer = styled.div`
   position: relative;
-  top: calc(20% - ${props => props.diagonale}px / 2);
+  top: calc(20% - ${props => Math.sqrt(2) * props.theme.rating.size}px / 2);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${props => props.diagonale}px;
-  height: ${props => props.diagonale}px;
+  width: ${props => Math.sqrt(2) * props.theme.rating.size}px;
+  height: ${props => Math.sqrt(2) * props.theme.rating.size}px;
 `;
 
-const Square = styled.div<{ size: number }>`
+const Square = styled.div`
   position: relative;
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
+  width: ${props => props.theme.rating.size}px;
+  height: ${props => props.theme.rating.size}px;
   background-color: #2e8e89;
   transform: rotate(45deg);
   z-index: 1;
@@ -42,14 +44,14 @@ const Square = styled.div<{ size: number }>`
 const Rating = styled.h5`
   position: absolute;
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: ${props => props.theme.rating.fontSize}
   color: #ececec;
   z-index: 10;
 `;
 
 const Border = styled.div`
   position: absolute;
-  width: 4px;
+  width: ${props => props.theme.rating.line};
   background-color: var(--main-color-text);
   opacity: 0.8;
   z-index: 0;
@@ -57,13 +59,13 @@ const Border = styled.div`
 
 const BorderDrop = styled(Border)`
   top: 0;
-  left: 20%;
+  left: ${props => props.theme.rating.leftLine};
   height: 20%;
 `;
 
 const BorderRise = styled(Border)`
   bottom: 0;
-  right: 25%;
+  right: ${props => props.theme.rating.rightLine};
   height: 80%;
 `;
 

@@ -42,7 +42,8 @@ export default class MyDocument extends Document {
         padding: 0;
         font-weight: normal;
         color: var(--main-color-text);
-        font-family: var(--primary-font)
+        font-family: var(--primary-font);
+        line-height: 1.5;
       }
       
       ol,

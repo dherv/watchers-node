@@ -7,7 +7,7 @@
     "start": "ts-node --project tsconfig.server.json ./src/server/app.ts",
     "watch": "ts-node-dev --ignore-watch .next --project tsconfig.server.json ./src/server/app.ts",
     "build": "NODE_ENV=production tsc --project tsconfig.server.json && next build && node ./build/app.js",
-    "test": "jest --passWithNoTests --watch"
+    "test": "jest --passWithNoTests --watch --coverage"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.8",
+    "moment": "^2.24.0",
     "mongoose": "^5.7.4",
     "next": "^9.1.1",
     "next-with-apollo": "^4.3.0",

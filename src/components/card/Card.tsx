@@ -1,28 +1,89 @@
 import React from "react";
 import CardImage from "./CardImage";
 import CardContent from "./CardContent";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { IMovie } from "../../interfaces/Movie";
+import { useRouter } from "next/router";
 
-const Card = ({ movie }: { movie: IMovie }) => {
+const Card = ({ movie, theme }: { movie: IMovie; theme?: any }) => {
+  const router = useRouter();
   const poster_url = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+  const handleRouterPush = () => {
+    return router.push("/movie/[movie_id]", `/movie/${movie.id}`);
+  };
+
   return (
-    <Container>
-      <CardImage
-        src={poster_url}
-        rating={movie.vote_average}
-        title={movie.original_title}
-      ></CardImage>
-      <CardContent title={movie.original_title}></CardContent>
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container onClick={() => handleRouterPush()}>
+        <CardImage
+          src={poster_url}
+          rating={movie.vote_average}
+          title={movie.original_title}
+          theme={theme}
+        ></CardImage>
+        <CardContent title={movie.original_title} theme={theme}></CardContent>
+      </Container>
+    </ThemeProvider>
   );
 };
 
+export const cardSmall = () => {
+  return {
+    size: "150px",
+    textDisplay: "none",
+    fontSize: ".8rem",
+    rating: {
+      size: "32",
+      line: "3px",
+      leftLine: "25%",
+      rightLine: "30%",
+      fontSize: ".9rem"
+    }
+  };
+};
+
+export const cardRegular = (add?: Object) => {
+  return {
+    size: "300px",
+    textDisplay: "flex",
+    fontSize: "1.25rem",
+    rating: {
+      size: "48",
+      line: "4px",
+      leftLine: "20%",
+      rightLine: "25%",
+      fontSize: ".9rem"
+    },
+    ...add
+  };
+};
+
+export const cardRegularRotate = cardRegular({ transform: "rotate(-2deg)" });
+
 export const Container = styled.div`
-  min-width: 300px;
-  margin-right: 4rem;
+  min-width: ${props => props.theme.size};
+  max-width: 400px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+  transform: ${props => props.theme.transform};
 `;
 
-export default Card;
+type WithDefaultProps<C, D> = C & { defaultProps: D };
+
+function withDefaultProps<C, D>(
+  component: C,
+  defaultProps: D
+): WithDefaultProps<C, D> {
+  (component as WithDefaultProps<C, D>).defaultProps = defaultProps;
+  return component as WithDefaultProps<C, D>;
+}
+
+const defaultProps = {
+  theme: cardRegular
+};
+
+export default withDefaultProps(Card, defaultProps);

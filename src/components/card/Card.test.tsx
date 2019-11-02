@@ -1,11 +1,13 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import renderer from "react-test-renderer";
 import "jest-styled-components";
 
-import Card from "./Card";
+import Card, { Container } from "./Card";
 import CardImage from "./CardImage";
 import CardContent from "./CardContent";
+import { NextRouter } from "next/router";
+import { RouterContext } from "next/dist/next-server/lib/router-context";
 
 describe("Card", () => {
   const movie = {
@@ -37,7 +39,29 @@ describe("Card", () => {
         expect(wrapper.find(CardContent)).toHaveLength(1);
       });
     });
-    describe("events", () => {});
+    describe("events", () => {
+      test("should send to the movie page with movie id when clicked", () => {
+        const router = ({
+          pathname: "/movie",
+          route: "/movie",
+          asPath: "/movie",
+          push: jest.fn()
+        } as unknown) as NextRouter;
+
+        const wrapper = mount(
+          <RouterContext.Provider value={router}>
+            <Card {...props} />
+          </RouterContext.Provider>
+        );
+
+        expect.assertions(1);
+        wrapper.find(Container).simulate("click", { preventDefault() {} });
+        expect(router.push).toHaveBeenCalledWith(
+          "/movie/[movie_id]",
+          "/movie/559969"
+        );
+      });
+    });
   });
 
   describe("snapshot", () => {

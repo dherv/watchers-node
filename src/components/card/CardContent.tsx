@@ -1,20 +1,22 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 
-const CardContent = ({ title }: { title: string }) => (
-  <Container>
-    <Title>{title}</Title>
-    <ScoreContainer>
-      <Metacritic>
-        <span>Metacritic</span>
-        <span>89</span>
-      </Metacritic>
-      <IMDb>
-        <span>IMDb</span>
-        <span>8.9</span>
-      </IMDb>
-    </ScoreContainer>
-  </Container>
+const CardContent = ({ title, theme }: { title: string; theme: any }) => (
+  <ThemeProvider theme={theme}>
+    <Container>
+      <Title>{title}</Title>
+      <ScoreContainer>
+        <Metacritic>
+          <span>Metacritic</span>
+          <span>89</span>
+        </Metacritic>
+        <IMDb>
+          <span>IMDb</span>
+          <span>8.9</span>
+        </IMDb>
+      </ScoreContainer>
+    </Container>
+  </ThemeProvider>
 );
 
 const Container = styled.div`
@@ -25,14 +27,14 @@ const Container = styled.div`
 
 const Title = styled.h4`
   font-weight: 600;
-  font-size: 1.25rem;
   line-height: 1.5em;
   height: 3em;
   overflow: hidden;
+  font-size: ${props => props.theme.fontSize};
 `;
 
 const ScoreContainer = styled.div`
-  display: flex;
+  display: ${props => props.theme.textDisplay};
   margin-top: 1rem;
 `;
 
@@ -49,4 +51,5 @@ const Metacritic = styled(Score)``;
 const IMDb = styled(Score)``;
 
 export { Score, ScoreContainer, Metacritic, IMDb, Container, Title };
+
 export default CardContent;

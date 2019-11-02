@@ -10,7 +10,16 @@ describe("CardImage", () => {
   const props = {
     src: "",
     rating: 9.0,
-    title: "El Camino: A Breaking Bad Movie"
+    title: "El Camino: A Breaking Bad Movie",
+    theme: {
+      rating: {
+        size: "48",
+        line: "4px",
+        leftLine: "20%",
+        rightLine: "25%",
+        fontSize: ".9rem"
+      }
+    }
   };
   const wrapper = shallow(<CardImage {...props} />);
 
