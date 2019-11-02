@@ -20,6 +20,7 @@ const Card = ({ movie, theme }: { movie: IMovie; theme?: any }) => {
           src={poster_url}
           rating={movie.vote_average}
           title={movie.original_title}
+          theme={theme}
         ></CardImage>
         <CardContent title={movie.original_title} theme={theme}></CardContent>
       </Container>
@@ -28,11 +29,34 @@ const Card = ({ movie, theme }: { movie: IMovie; theme?: any }) => {
 };
 
 export const cardSmall = () => {
-  return { size: "150px", textDisplay: "none", fontSize: ".8rem" };
+  return {
+    size: "150px",
+    textDisplay: "none",
+    fontSize: ".8rem",
+    rating: {
+      size: "32",
+      line: "3px",
+      leftLine: "25%",
+      rightLine: "30%",
+      fontSize: ".9rem"
+    }
+  };
 };
 
 export const cardRegular = (add?: Object) => {
-  return { size: "300px", textDisplay: "flex", fontSize: "1.25rem", ...add };
+  return {
+    size: "300px",
+    textDisplay: "flex",
+    fontSize: "1.25rem",
+    rating: {
+      size: "48",
+      line: "4px",
+      leftLine: "20%",
+      rightLine: "25%",
+      fontSize: ".9rem"
+    },
+    ...add
+  };
 };
 
 export const cardRegularRotate = cardRegular({ transform: "rotate(-2deg)" });
@@ -59,11 +83,7 @@ function withDefaultProps<C, D>(
 }
 
 const defaultProps = {
-  theme: {
-    size: "300px",
-    textDisplay: "flex",
-    fontSize: "1.25rem"
-  }
+  theme: cardRegular
 };
 
 export default withDefaultProps(Card, defaultProps);

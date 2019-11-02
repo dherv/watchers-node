@@ -42,8 +42,7 @@ exports[`Card snapshot should match 1`] = `
 .c6 {
   position: absolute;
   font-weight: 800;
-  font-size: 1.2rem;
-  color: #ececec;
+  font-size: .9rem color:#ececec;
   z-index: 10;
 }
 
@@ -151,7 +150,6 @@ exports[`Card snapshot should match 1`] = `
       >
         <div
           className="c5"
-          size={48}
         />
         <h5
           className="c6"
