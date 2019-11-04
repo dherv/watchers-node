@@ -53,7 +53,6 @@ exports[`ActiveLink component snapshot should match 1`] = `
           "styledComponentId": "ActiveLink__ListItem-sc-1si0yf-1",
           "target": "li",
           "toString": [Function],
-          "usesTheme": false,
           "warnTooManyClasses": [Function],
           "withComponent": [Function],
         }
@@ -94,7 +93,6 @@ exports[`ActiveLink component snapshot should match 1`] = `
                 "styledComponentId": "ActiveLink__Anchor-sc-1si0yf-0",
                 "target": "a",
                 "toString": [Function],
-                "usesTheme": false,
                 "warnTooManyClasses": [Function],
                 "withComponent": [Function],
               }

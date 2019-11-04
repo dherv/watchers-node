@@ -5,7 +5,15 @@ import styled, { ThemeProvider } from "styled-components";
 import { IMovie } from "../../interfaces/Movie";
 import { useRouter } from "next/router";
 
-const Card = ({ movie, theme }: { movie: IMovie; theme?: any }) => {
+const Card = ({
+  movie,
+  inWatchlist,
+  theme
+}: {
+  movie: IMovie;
+  inWatchlist: Boolean;
+  theme?: any;
+}) => {
   const router = useRouter();
   const poster_url = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
@@ -22,7 +30,11 @@ const Card = ({ movie, theme }: { movie: IMovie; theme?: any }) => {
           title={movie.original_title}
           theme={theme}
         ></CardImage>
-        <CardContent title={movie.original_title} theme={theme}></CardContent>
+        <CardContent
+          movie={movie}
+          theme={theme}
+          inWatchlist={inWatchlist}
+        ></CardContent>
       </Container>
     </ThemeProvider>
   );

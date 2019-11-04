@@ -6,6 +6,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 import MovieList, { Container } from "./MovieList";
 import moment from "moment";
+import { MockedProvider } from "@apollo/react-testing";
 
 describe("MovieList", () => {
   const props = {};
@@ -45,7 +46,11 @@ describe("MovieList", () => {
 
     describe("user interface", () => {
       test("should display one Container styled component", async () => {
-        const { container } = render(<MovieList />);
+        const { container } = render(
+          <MockedProvider mocks={[]} addTypename={false}>
+            <MovieList />
+          </MockedProvider>
+        );
         await wait(() => {
           const styledComponentName = Container.displayName;
           expect((container.firstChild as HTMLElement).className).toContain(
@@ -57,7 +62,11 @@ describe("MovieList", () => {
 
     describe("events", () => {
       test("it should fetch movies and create a Card component for each movie", async () => {
-        const { getByText, getByAltText } = render(<MovieList />);
+        const { getByText, getByAltText } = render(
+          <MockedProvider mocks={[]} addTypename={false}>
+            <MovieList />
+          </MockedProvider>
+        );
         await waitForElement(() =>
           getByText("El Camino: A Breaking Bad Movie")
         );

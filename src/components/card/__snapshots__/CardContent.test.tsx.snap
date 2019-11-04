@@ -14,61 +14,18 @@ exports[`CardContent snapshot should match 1`] = `
   overflow: hidden;
 }
 
-.c2 {
-  margin-top: 1rem;
-}
-
-.c3 {
-  font-size: 12px;
-  margin-right: 1rem;
-}
-
-.c3 span:first-child {
-  font-weight: 600;
-  margin-right: 8px;
-}
-
-.c4 {
-  font-size: 12px;
-  margin-right: 1rem;
-}
-
-.c4 span:first-child {
-  font-weight: 600;
-  margin-right: 8px;
-}
-
 <div
   className="c0"
 >
   <h4
     className="c1"
   >
-    Title
+    El Camino: A Breaking Bad Movie
   </h4>
-  <div
-    className="c2"
+  <button
+    onClick={[Function]}
   >
-    <div
-      className="c3"
-    >
-      <span>
-        Metacritic
-      </span>
-      <span>
-        89
-      </span>
-    </div>
-    <div
-      className="c4"
-    >
-      <span>
-        IMDb
-      </span>
-      <span>
-        8.9
-      </span>
-    </div>
-  </div>
+    +
+  </button>
 </div>
 `;

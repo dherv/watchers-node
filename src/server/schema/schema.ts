@@ -1,6 +1,8 @@
 // const graphql = require("graphql")
 import * as graphql from "graphql";
 import Movie from "../models/Movie";
+import { GraphQLBoolean, GraphQLInt, GraphQLFloat } from "graphql";
+import { IMovie } from "../../interfaces/Movie";
 
 const {
   GraphQLObjectType,
@@ -14,9 +16,20 @@ const {
 const MovieType = new GraphQLObjectType({
   name: "Movie",
   fields: () => ({
-    id: { type: GraphQLID },
-    name: { type: GraphQLString },
-    genre: { type: GraphQLString }
+    adult: { type: new GraphQLNonNull(GraphQLBoolean) },
+    backdrop_path: { type: new GraphQLNonNull(GraphQLString) },
+    genre_ids: { type: new GraphQLList(GraphQLID) },
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    original_language: { type: new GraphQLNonNull(GraphQLString) },
+    original_title: { type: new GraphQLNonNull(GraphQLString) },
+    overview: { type: new GraphQLNonNull(GraphQLString) },
+    popularity: { type: new GraphQLNonNull(GraphQLFloat) },
+    poster_path: { type: new GraphQLNonNull(GraphQLString) },
+    release_date: { type: new GraphQLNonNull(GraphQLString) },
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    video: { type: new GraphQLNonNull(GraphQLBoolean) },
+    vote_average: { type: new GraphQLNonNull(GraphQLFloat) },
+    vote_count: { type: new GraphQLNonNull(GraphQLInt) }
   })
 });
 
@@ -46,13 +59,37 @@ const Mutation = new GraphQLObjectType({
     addMovie: {
       type: MovieType,
       args: {
-        name: { type: new GraphQLNonNull(GraphQLString) },
-        genre: { type: new GraphQLNonNull(GraphQLString) }
+        adult: { type: new GraphQLNonNull(GraphQLBoolean) },
+        backdrop_path: { type: new GraphQLNonNull(GraphQLString) },
+        genre_ids: { type: new GraphQLList(GraphQLID) },
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        original_language: { type: new GraphQLNonNull(GraphQLString) },
+        original_title: { type: new GraphQLNonNull(GraphQLString) },
+        overview: { type: new GraphQLNonNull(GraphQLString) },
+        popularity: { type: new GraphQLNonNull(GraphQLFloat) },
+        poster_path: { type: new GraphQLNonNull(GraphQLString) },
+        release_date: { type: new GraphQLNonNull(GraphQLString) },
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        video: { type: new GraphQLNonNull(GraphQLBoolean) },
+        vote_average: { type: new GraphQLNonNull(GraphQLFloat) },
+        vote_count: { type: new GraphQLNonNull(GraphQLInt) }
       },
-      resolve(_: any, args: { name: string; genre: string }) {
+      resolve(_: any, args: IMovie) {
         let movie = new Movie({
-          name: args.name,
-          genre: args.genre
+          adult: args.adult,
+          backdrop_path: args.backdrop_path,
+          genre_ids: args.genre_ids,
+          id: args.id,
+          original_language: args.original_language,
+          original_title: args.original_title,
+          overview: args.overview,
+          popularity: args.popularity,
+          poster_path: args.poster_path,
+          release_date: args.release_date,
+          title: args.title,
+          video: args.video,
+          vote_average: args.vote_average,
+          vote_count: args.vote_count
         });
         return movie.save();
       }

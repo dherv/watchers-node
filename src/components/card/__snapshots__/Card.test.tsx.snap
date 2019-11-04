@@ -91,34 +91,6 @@ exports[`Card snapshot should match 1`] = `
   font-size: 1.25rem;
 }
 
-.c11 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 1rem;
-}
-
-.c12 {
-  font-size: 12px;
-  margin-right: 1rem;
-}
-
-.c12 span:first-child {
-  font-weight: 600;
-  margin-right: 8px;
-}
-
-.c13 {
-  font-size: 12px;
-  margin-right: 1rem;
-}
-
-.c13 span:first-child {
-  font-weight: 600;
-  margin-right: 8px;
-}
-
 .c0 {
   min-width: 300px;
   max-width: 400px;
@@ -173,30 +145,11 @@ exports[`Card snapshot should match 1`] = `
     >
       El Camino: A Breaking Bad Movie
     </h4>
-    <div
-      className="c11"
+    <button
+      onClick={[Function]}
     >
-      <div
-        className="c12"
-      >
-        <span>
-          Metacritic
-        </span>
-        <span>
-          89
-        </span>
-      </div>
-      <div
-        className="c13"
-      >
-        <span>
-          IMDb
-        </span>
-        <span>
-          8.9
-        </span>
-      </div>
-    </div>
+      +
+    </button>
   </div>
 </div>
 `;

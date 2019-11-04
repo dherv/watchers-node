@@ -5,6 +5,7 @@ import MovieContent from "./MovieContent";
 import { render, wait } from "@testing-library/react";
 import { NextRouter } from "next/router";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
+import { MockedProvider } from "@apollo/react-testing";
 
 describe("MovieContent", () => {
   const movie = {
@@ -75,9 +76,11 @@ describe("MovieContent", () => {
     describe("user interface", () => {
       test("should display the movie title", async () => {
         const { getByText } = render(
-          <RouterContext.Provider value={router}>
-            <MovieContent {...props} />
-          </RouterContext.Provider>
+          <MockedProvider mocks={[]} addTypename={false}>
+            <RouterContext.Provider value={router}>
+              <MovieContent {...props} />
+            </RouterContext.Provider>
+          </MockedProvider>
         );
         await wait(() =>
           expect(getByText("El Camino: A Breaking Bad Movie")).toBeDefined()
@@ -85,17 +88,21 @@ describe("MovieContent", () => {
       });
       test("should display the movie release date", async () => {
         const { getByText } = render(
-          <RouterContext.Provider value={router}>
-            <MovieContent {...props} />
-          </RouterContext.Provider>
+          <MockedProvider mocks={[]} addTypename={false}>
+            <RouterContext.Provider value={router}>
+              <MovieContent {...props} />
+            </RouterContext.Provider>
+          </MockedProvider>
         );
         await wait(() => expect(getByText("October 11, 2019")).toBeDefined());
       });
       test("should display the movie overview", async () => {
         const { getByText } = render(
-          <RouterContext.Provider value={router}>
-            <MovieContent {...props} />
-          </RouterContext.Provider>
+          <MockedProvider mocks={[]} addTypename={false}>
+            <RouterContext.Provider value={router}>
+              <MovieContent {...props} />
+            </RouterContext.Provider>
+          </MockedProvider>
         );
         await wait(() =>
           expect(
@@ -107,9 +114,11 @@ describe("MovieContent", () => {
       });
       test("should display similar movies poster", async () => {
         const { getByAltText } = render(
-          <RouterContext.Provider value={router}>
-            <MovieContent {...props} />
-          </RouterContext.Provider>
+          <MockedProvider mocks={[]} addTypename={false}>
+            <RouterContext.Provider value={router}>
+              <MovieContent {...props} />
+            </RouterContext.Provider>
+          </MockedProvider>
         );
         await wait(() =>
           expect(getByAltText("Similar Movie poster")).toBeDefined()
