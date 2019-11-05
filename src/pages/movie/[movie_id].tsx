@@ -65,20 +65,18 @@ const MoviePage = () => {
 
   return (
     loaded && (
-      <Layout>
-        <Container>
-          <CardContainer>
-            <Card movie={movie} theme={cardRegularRotate} />
-          </CardContainer>
+      <Container>
+        <CardContainer>
+          <Card movie={movie} theme={cardRegularRotate} />
+        </CardContainer>
 
-          <MovieContent
-            movie={movie}
-            cast={cast}
-            director={director}
-            similarMovies={similarMovies}
-          ></MovieContent>
-        </Container>
-      </Layout>
+        <MovieContent
+          movie={movie}
+          cast={cast}
+          director={director}
+          similarMovies={similarMovies}
+        ></MovieContent>
+      </Container>
     )
   );
 };
