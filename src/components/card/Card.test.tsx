@@ -1,11 +1,8 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
+import { mount } from "enzyme";
 import "jest-styled-components";
 
 import Card, { Container } from "./Card";
-import CardImage from "./CardImage";
-import CardContent from "./CardContent";
 import { NextRouter } from "next/router";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import { MockedProvider } from "@apollo/react-testing";
@@ -29,7 +26,7 @@ describe("Card", () => {
       "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
     release_date: "2019-10-11"
   };
-  const props = { movie };
+  const props = { movie, inWatchlist: true };
 
   describe("Card component", () => {
     describe("user interface", () => {
@@ -76,20 +73,6 @@ describe("Card", () => {
           "/movie/559969"
         );
       });
-    });
-  });
-
-  describe("snapshot", () => {
-    test("should match", () => {
-      expect.assertions(1);
-      const tree = renderer
-        .create(
-          <MockedProvider mocks={[]} addTypename={false}>
-            <Card {...props} />
-          </MockedProvider>
-        )
-        .toJSON();
-      expect(tree).toMatchSnapshot();
     });
   });
 });

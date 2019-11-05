@@ -13,7 +13,7 @@ const MovieList = () => {
 
   useEffect(() => {
     fetchMovies();
-  }, [loading]);
+  }, []);
 
   const fetchMovies = (): Promise<void> => {
     const date_start = moment()
@@ -31,20 +31,21 @@ const MovieList = () => {
       });
   };
 
+  const checkInWatchlist = (movie: IMovie): Boolean => {
+    return data.movies.some(item => Number(item.id) === movie.id);
+  };
+
   const displayMovies = () => {
     return movies.map(movie => {
       return (
         <CardContainer key={movie.id}>
-          <Card
-            movie={movie}
-            inWatchlist={data.movies.some(item => Number(item.id) === movie.id)}
-          />
+          <Card movie={movie} inWatchlist={checkInWatchlist(movie)} />
         </CardContainer>
       );
     });
   };
 
-  return loaded && <Container>{displayMovies()}</Container>;
+  return loaded && !loading && <Container>{displayMovies()}</Container>;
 };
 
 export const Container = styled.div`

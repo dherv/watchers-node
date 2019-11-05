@@ -4,6 +4,7 @@ import renderer from "react-test-renderer";
 import "jest-styled-components";
 import CardContent, { Title } from "./CardContent";
 import { MockedProvider } from "@apollo/react-testing";
+import { render, fireEvent } from "@testing-library/react";
 
 describe("CardContent", () => {
   const movie = {
@@ -23,7 +24,7 @@ describe("CardContent", () => {
       "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
     release_date: "2019-10-11"
   };
-  const props = { movie, theme: {} };
+  const props = { movie, inWatchlist: false, theme: {} };
   const wrapper = mount(
     <MockedProvider mocks={[]} addTypename={false}>
       <CardContent {...props} />
@@ -37,20 +38,25 @@ describe("CardContent", () => {
         expect(wrapper.find(Title).text()).toEqual(props.movie.original_title);
       });
     });
-    describe("events", () => {});
-  });
-
-  describe("snapshot", () => {
-    test("should match", () => {
-      expect.assertions(1);
-      const tree = renderer
-        .create(
+    describe("events", () => {
+      test.skip("should fire handleAddToWatchlist on click IconAdd", () => {
+        //TODO: mock the mutation addMovie
+        const { queryByTitle } = render(
           <MockedProvider mocks={[]} addTypename={false}>
             <CardContent {...props} />
           </MockedProvider>
-        )
-        .toJSON();
-      expect(tree).toMatchSnapshot();
+        );
+
+        fireEvent(
+          queryByTitle("Add"),
+          new MouseEvent("click", {
+            bubbles: true,
+            cancelable: true
+          })
+        );
+
+        expect(queryByTitle("Add")).toBeNull();
+      });
     });
   });
 });
