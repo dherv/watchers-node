@@ -40,7 +40,7 @@ const RootQuery = new GraphQLObjectType({
       type: MovieType,
       args: { id: { type: GraphQLID } },
       resolve(_: any, args: { id: string }) {
-        return Movie.findById(args.id);
+        return Movie.findOne({ id: args.id });
       }
     },
 
@@ -50,12 +50,14 @@ const RootQuery = new GraphQLObjectType({
         return Movie.find({});
       }
     }
+
+
   }
 });
 
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
-  fields: {
+  fields: () => ({
     addMovie: {
       type: MovieType,
       args: {
@@ -93,8 +95,16 @@ const Mutation = new GraphQLObjectType({
         });
         return movie.save();
       }
+    },
+
+    removeMovie: {
+      type: MovieType,
+      args: { id: { type: GraphQLID } },
+      resolve(_: any, args: { id: number }) {
+        return Movie.findOneAndDelete({ id: args.id });
+      }
     }
-  }
+  })
 });
 
 export default new GraphQLSchema({
