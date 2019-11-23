@@ -109,20 +109,17 @@ describe("movie_id", () => {
     } as unknown) as NextRouter;
 
     describe("user interface", () => {
-      test("should display one Layout component after loaded", async () => {
+      //TODO: move to _app.test.tsx
+      test("should be contained in a Layout component", async () => {
         expect.assertions(1);
-        const { container } = render(
+        const { queryByRole } = render(
           <MockedProvider mocks={[]} addTypename={false}>
             <RouterContext.Provider value={router}>
               <MoviePage {...props} />
             </RouterContext.Provider>
           </MockedProvider>
         );
-
-        await wait(() => {
-          const logo = container.querySelector("h1");
-          expect(logo.textContent).toBe("watchers");
-        });
+        await wait(() => expect(queryByRole("navigation")).toBeDefined());
       });
 
       test("should display one Container styled component after loaded", async () => {
