@@ -62,7 +62,8 @@ describe("MovieContent", () => {
     movie,
     similarMovies,
     cast: credits.cast,
-    director: credits.crew
+    director: credits.crew,
+    inWatchlist: true
   };
   const router = ({
     pathname: "/movie",

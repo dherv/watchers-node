@@ -23,6 +23,7 @@ describe("movie_id", () => {
     original_language: "en",
     original_title: "El Camino: A Breaking Bad Movie",
     genre_ids: [80, 18, 53],
+    genres: [{ id: 80, name: "Action" }],
     title: "El Camino: A Breaking Bad Movie",
     vote_average: 7.2,
     overview:

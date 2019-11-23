@@ -89,6 +89,7 @@ const MoviePage = () => {
           cast={cast}
           director={director}
           similarMovies={similarMovies}
+          watchlist={data}
         ></MovieContent>
       </Container>
     )

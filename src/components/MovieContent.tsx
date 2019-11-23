@@ -9,7 +9,13 @@ const MovieContent: FC<{
   director: any;
   cast: any[];
   similarMovies: IMovie[];
-}> = ({ movie, cast, director, similarMovies }) => {
+  watchlist: { movies: IMovie[] };
+}> = ({ movie, cast, director, similarMovies, watchlist }) => {
+  //TODO: move checkInWatchlist in utility function
+  const checkInWatchlist = (movie_id: number): Boolean =>
+    watchlist &&
+    watchlist.movies.some(item => Number(item.id) === Number(movie_id));
+
   return (
     <Container>
       <Title>{movie.original_title}</Title>
@@ -35,7 +41,11 @@ const MovieContent: FC<{
           <ul>
             {similarMovies.map((item: IMovie) => (
               <li key={item.id}>
-                <Card movie={item} theme={cardSmall}></Card>
+                <Card
+                  movie={item}
+                  theme={cardSmall}
+                  inWatchlist={checkInWatchlist(item.id)}
+                ></Card>
               </li>
             ))}
           </ul>
