@@ -1,13 +1,12 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
+import { mount } from "enzyme";
 import "jest-styled-components";
 
 import Card, { Container } from "./Card";
-import CardImage from "./CardImage";
-import CardContent from "./CardContent";
 import { NextRouter } from "next/router";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
+import { MockedProvider } from "@apollo/react-testing";
+import { render } from "@testing-library/react";
 
 describe("Card", () => {
   const movie = {
@@ -27,16 +26,27 @@ describe("Card", () => {
       "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
     release_date: "2019-10-11"
   };
-  const props = { movie };
-  const wrapper = shallow(<Card {...props} />);
+  const props = { movie, inWatchlist: true };
 
   describe("Card component", () => {
     describe("user interface", () => {
       test("should display one CardImageContainer", () => {
-        expect(wrapper.find(CardImage)).toHaveLength(1);
+        const { getByAltText } = render(
+          <MockedProvider mocks={[]} addTypename={false}>
+            <Card {...props} />
+          </MockedProvider>
+        );
+        expect(
+          getByAltText(`${props.movie.original_title} poster`)
+        ).toBeDefined();
       });
       test("should display one CardContent", () => {
-        expect(wrapper.find(CardContent)).toHaveLength(1);
+        const { getByText } = render(
+          <MockedProvider mocks={[]} addTypename={false}>
+            <Card {...props} />
+          </MockedProvider>
+        );
+        expect(getByText(`${props.movie.original_title}`)).toBeDefined();
       });
     });
     describe("events", () => {
@@ -49,9 +59,11 @@ describe("Card", () => {
         } as unknown) as NextRouter;
 
         const wrapper = mount(
-          <RouterContext.Provider value={router}>
-            <Card {...props} />
-          </RouterContext.Provider>
+          <MockedProvider mocks={[]} addTypename={false}>
+            <RouterContext.Provider value={router}>
+              <Card {...props} />
+            </RouterContext.Provider>
+          </MockedProvider>
         );
 
         expect.assertions(1);
@@ -61,14 +73,6 @@ describe("Card", () => {
           "/movie/559969"
         );
       });
-    });
-  });
-
-  describe("snapshot", () => {
-    test("should match", () => {
-      expect.assertions(1);
-      const tree = renderer.create(<Card {...props} />).toJSON();
-      expect(tree).toMatchSnapshot();
     });
   });
 });

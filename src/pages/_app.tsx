@@ -2,6 +2,7 @@ import App from "next/app";
 import Head from "next/head";
 import { ApolloProvider } from "@apollo/react-hooks";
 import withApollo from "../graphql/lib/withApollo";
+import Layout from "../components/layout/Layout";
 
 interface IProps {
   apollo: any;
@@ -19,7 +20,9 @@ class MyApp extends App<IProps> {
             rel="stylesheet"
           />
         </Head>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ApolloProvider>
     );
   }

@@ -1,28 +1,42 @@
-import React from "react";
-import styled, { ThemeProvider } from "styled-components";
+import React, { FC, ReactChildren, ReactNode } from "react";
+import styled, { ThemeProvider, ThemeProviderProps } from "styled-components";
+import { IMovie } from "../../interfaces/Movie";
 
-const CardContent = ({ title, theme }: { title: string; theme: any }) => (
-  <ThemeProvider theme={theme}>
-    <Container>
-      <Title>{title}</Title>
-      <ScoreContainer>
-        <Metacritic>
-          <span>Metacritic</span>
-          <span>89</span>
-        </Metacritic>
-        <IMDb>
-          <span>IMDb</span>
-          <span>8.9</span>
-        </IMDb>
-      </ScoreContainer>
-    </Container>
-  </ThemeProvider>
-);
+import moment from "moment";
+
+const CardContent: FC<{
+  movie: IMovie;
+  inWatchlist: Boolean;
+  theme: ThemeProviderProps<{}>;
+  chidlren?: ReactChildren;
+}> = ({ movie, inWatchlist, theme, children }) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Container>
+        <TitleWrapper>
+          <div>
+            <Title>{movie.original_title}</Title>
+            <small>{moment(movie.release_date).format("LL")}</small>
+          </div>
+          <IconWrapper>{inWatchlist ? null : children}</IconWrapper>
+        </TitleWrapper>
+      </Container>
+    </ThemeProvider>
+  );
+};
 
 const Container = styled.div`
+  width: 100%;
   padding: 2rem 1rem;
   background-color: #323534;
-  border-radius: 0 0 10px 10px;
+  border-radius: ${props => props.theme.content.borderRadius};
+`;
+
+const TitleWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const Title = styled.h4`
@@ -33,23 +47,10 @@ const Title = styled.h4`
   font-size: ${props => props.theme.fontSize};
 `;
 
-const ScoreContainer = styled.div`
-  display: ${props => props.theme.textDisplay};
-  margin-top: 1rem;
+const IconWrapper = styled.div`
+  width: 32px;
+  height: 32px;
 `;
-
-const Score = styled.div`
-  font-size: 12px;
-  margin-right: 1rem;
-  span:first-child {
-    font-weight: 600;
-    margin-right: 8px;
-  }
-`;
-
-const Metacritic = styled(Score)``;
-const IMDb = styled(Score)``;
-
-export { Score, ScoreContainer, Metacritic, IMDb, Container, Title };
+export { Container, Title };
 
 export default CardContent;

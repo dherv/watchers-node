@@ -1,28 +1,75 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import CardImage from "./CardImage";
 import CardContent from "./CardContent";
 import styled, { ThemeProvider } from "styled-components";
 import { IMovie } from "../../interfaces/Movie";
 import { useRouter } from "next/router";
+import IconAdd from "../../icons/IconAdd";
+import { useMutation } from "@apollo/react-hooks";
+import {
+  addMovieMutation,
+  getMovies,
+  removeMovieMutation
+} from "../../graphql/queries/queries";
+import IconDelete from "../../icons/IconDelete";
 
-const Card = ({ movie, theme }: { movie: IMovie; theme?: any }) => {
+const Card = ({
+  movie,
+  inWatchlist,
+  theme,
+  parentPage
+}: {
+  movie: IMovie;
+  inWatchlist: Boolean;
+  theme?: any;
+  parentPage?: String;
+}) => {
   const router = useRouter();
-  const poster_url = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  const [addMovie] = useMutation(addMovieMutation);
+  const [removeMovie] = useMutation(removeMovieMutation);
+  const handleAddToWatchlist = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    addMovie({
+      variables: {
+        ...movie
+      },
+      refetchQueries: [{ query: getMovies }]
+    });
+  };
+
+  const handleRemoveFromWatchlist = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    removeMovie({
+      variables: {
+        ...movie
+      },
+      refetchQueries: [{ query: getMovies }]
+    });
+  };
 
   const handleRouterPush = () => {
     return router.push("/movie/[movie_id]", `/movie/${movie.id}`);
   };
 
+  const displayIcons = () => {
+    if (parentPage === "watchlist") {
+      console.log(parentPage);
+      return (
+        <IconDelete
+          onClick={event => handleRemoveFromWatchlist(event)}
+        ></IconDelete>
+      );
+    }
+    return <IconAdd onClick={event => handleAddToWatchlist(event)}></IconAdd>;
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container onClick={() => handleRouterPush()}>
-        <CardImage
-          src={poster_url}
-          rating={movie.vote_average}
-          title={movie.original_title}
-          theme={theme}
-        ></CardImage>
-        <CardContent title={movie.original_title} theme={theme}></CardContent>
+        <CardImage movie={movie} theme={theme}></CardImage>
+        <CardContent movie={movie} theme={theme} inWatchlist={inWatchlist}>
+          {displayIcons()}
+        </CardContent>
       </Container>
     </ThemeProvider>
   );
@@ -39,6 +86,16 @@ export const cardSmall = () => {
       leftLine: "25%",
       rightLine: "30%",
       fontSize: ".9rem"
+    },
+    image: {
+      borderRadius: "10px 10px 0 0",
+      maxWidth: "250px"
+    },
+    container: {
+      display: "block"
+    },
+    content: {
+      borderRadius: "0 0 10px 10px"
     }
   };
 };
@@ -55,15 +112,42 @@ export const cardRegular = (add?: Object) => {
       rightLine: "25%",
       fontSize: ".9rem"
     },
+    image: {
+      borderRadius: "10px 10px 0 0",
+      maxWidth: "400px"
+    },
+    container: {
+      display: "block"
+    },
+    content: {
+      borderRadius: "0 0 10px 10px"
+    },
     ...add
+  };
+};
+
+export const cardLandscapeSmall = () => {
+  return {
+    ...cardSmall(),
+    fontSize: "1rem",
+    image: {
+      borderRadius: "10px 0 0 10px",
+      maxWidth: "150px"
+    },
+    container: {
+      display: "flex"
+    },
+    content: {
+      borderRadius: "0 10px 10px 0"
+    }
   };
 };
 
 export const cardRegularRotate = cardRegular({ transform: "rotate(-2deg)" });
 
 export const Container = styled.div`
+  display: ${props => props.theme.container.display};
   min-width: ${props => props.theme.size};
-  max-width: 400px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   &:hover {
@@ -83,7 +167,8 @@ function withDefaultProps<C, D>(
 }
 
 const defaultProps = {
-  theme: cardRegular
+  theme: cardRegular,
+  inWatchlist: false
 };
 
 export default withDefaultProps(Card, defaultProps);

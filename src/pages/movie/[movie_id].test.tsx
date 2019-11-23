@@ -6,6 +6,8 @@ import { NextRouter } from "next/router";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import { render, wait, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
+import { MockedProvider } from "@apollo/react-testing";
+import { getMovies } from "../../graphql/queries/queries";
 
 describe("movie_id", () => {
   const props = {};
@@ -21,12 +23,26 @@ describe("movie_id", () => {
     original_language: "en",
     original_title: "El Camino: A Breaking Bad Movie",
     genre_ids: [80, 18, 53],
+    genres: [{ id: 80, name: "Action" }],
     title: "El Camino: A Breaking Bad Movie",
     vote_average: 7.2,
     overview:
       "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
     release_date: "2019-10-11"
   };
+
+  let mocks = [
+    {
+      request: {
+        query: getMovies
+      },
+      result: {
+        data: {
+          movies: [movie]
+        }
+      }
+    }
+  ];
 
   const similarMovie = {
     ...movie,
@@ -108,26 +124,27 @@ describe("movie_id", () => {
     } as unknown) as NextRouter;
 
     describe("user interface", () => {
-      test("should display one Layout component after loaded", async () => {
+      //TODO: move to _app.test.tsx
+      test("should be contained in a Layout component", async () => {
         expect.assertions(1);
-        const { container } = render(
-          <RouterContext.Provider value={router}>
-            <MoviePage {...props} />
-          </RouterContext.Provider>
+        const { queryByRole } = render(
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <RouterContext.Provider value={router}>
+              <MoviePage {...props} />
+            </RouterContext.Provider>
+          </MockedProvider>
         );
-
-        await wait(() => {
-          const logo = container.querySelector("h1");
-          expect(logo.textContent).toBe("watchers");
-        });
+        await wait(() => expect(queryByRole("navigation")).toBeDefined());
       });
 
       test("should display one Container styled component after loaded", async () => {
         expect.assertions(1);
         const { container } = render(
-          <RouterContext.Provider value={router}>
-            <MoviePage {...props} />
-          </RouterContext.Provider>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <RouterContext.Provider value={router}>
+              <MoviePage {...props} />
+            </RouterContext.Provider>
+          </MockedProvider>
         );
 
         await wait(() => {
@@ -141,9 +158,11 @@ describe("movie_id", () => {
       test("should display one Card component and pass the movie as props", async () => {
         expect.assertions(1);
         const { getByAltText } = render(
-          <RouterContext.Provider value={router}>
-            <MoviePage {...props} />
-          </RouterContext.Provider>
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <RouterContext.Provider value={router}>
+              <MoviePage {...props} />
+            </RouterContext.Provider>
+          </MockedProvider>
         );
         await wait(() =>
           expect(
@@ -159,9 +178,11 @@ describe("movie_id", () => {
         test("should fetch the movie and pass it down to the Card and MovieContent component", async () => {
           expect.assertions(2);
           const { getAllByText } = render(
-            <RouterContext.Provider value={router}>
-              <MoviePage {...props} />
-            </RouterContext.Provider>
+            <MockedProvider mocks={mocks} addTypename={false}>
+              <RouterContext.Provider value={router}>
+                <MoviePage {...props} />
+              </RouterContext.Provider>
+            </MockedProvider>
           );
           expect(fetch).toHaveBeenNthCalledWith(
             1,
@@ -176,9 +197,11 @@ describe("movie_id", () => {
         test("should fetch movie cast and display their names seperated by a comma", async () => {
           expect.assertions(3);
           const { getByText } = render(
-            <RouterContext.Provider value={router}>
-              <MoviePage {...props} />
-            </RouterContext.Provider>
+            <MockedProvider mocks={mocks} addTypename={false}>
+              <RouterContext.Provider value={router}>
+                <MoviePage {...props} />
+              </RouterContext.Provider>
+            </MockedProvider>
           );
           expect(fetch).toHaveBeenNthCalledWith(
             2,
@@ -193,9 +216,11 @@ describe("movie_id", () => {
         test("should fetch movie director and display his name", async () => {
           expect.assertions(2);
           const { getByText } = render(
-            <RouterContext.Provider value={router}>
-              <MoviePage {...props} />
-            </RouterContext.Provider>
+            <MockedProvider mocks={mocks} addTypename={false}>
+              <RouterContext.Provider value={router}>
+                <MoviePage {...props} />
+              </RouterContext.Provider>
+            </MockedProvider>
           );
           expect(fetch).toHaveBeenNthCalledWith(
             2,
@@ -207,9 +232,11 @@ describe("movie_id", () => {
         test("should fetch movie related movies and display the poster and name", async () => {
           expect.assertions(2);
           const { getByText } = render(
-            <RouterContext.Provider value={router}>
-              <MoviePage {...props} />
-            </RouterContext.Provider>
+            <MockedProvider mocks={mocks} addTypename={false}>
+              <RouterContext.Provider value={router}>
+                <MoviePage {...props} />
+              </RouterContext.Provider>
+            </MockedProvider>
           );
           expect(fetch).toHaveBeenNthCalledWith(
             3,
@@ -226,11 +253,13 @@ describe("movie_id", () => {
               error: "error test"
             });
           });
-          render(
-            <RouterContext.Provider value={router}>
-              <MoviePage {...props} />
-            </RouterContext.Provider>
-          );
+          // render(
+          //   <MockedProvider mocks={[]} addTypename={false}>
+          //     <RouterContext.Provider value={router}>
+          //       <MoviePage {...props} />
+          //     </RouterContext.Provider>
+          //   </MockedProvider>
+          // );
           expect.assertions(1);
           await expect(fetch("urltest")).rejects.toEqual({
             error: "error test"
