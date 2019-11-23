@@ -5,7 +5,8 @@ import GraphQLHTTP from "express-graphql";
 // import socketIo from "socket.io"
 import next, { NextApiRequest, NextApiResponse } from "next";
 import mongoose from "mongoose";
-import schema from "./schema/schema";
+import schema from "../graphql/schema/schema";
+
 const app = express();
 // explicitly create the http server and pass the express app to it
 const server = require("http").Server(app);
