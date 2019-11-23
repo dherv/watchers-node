@@ -63,3 +63,11 @@ export const addMovieMutation = gql`
     }
   }
 `;
+
+export const removeMovieMutation = gql`
+  mutation($id: ID!) {
+    removeMovie(id: $id) {
+      id
+    }
+  }
+`;

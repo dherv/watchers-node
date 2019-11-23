@@ -6,7 +6,11 @@ import { IMovie } from "../../interfaces/Movie";
 import { useRouter } from "next/router";
 import IconAdd from "../../icons/IconAdd";
 import { useMutation } from "@apollo/react-hooks";
-import { addMovieMutation, getMovies } from "../../graphql/queries/queries";
+import {
+  addMovieMutation,
+  getMovies,
+  removeMovieMutation
+} from "../../graphql/queries/queries";
 import IconDelete from "../../icons/IconDelete";
 
 const Card = ({
@@ -22,13 +26,24 @@ const Card = ({
 }) => {
   const router = useRouter();
   const [addMovie] = useMutation(addMovieMutation);
-
+  const [removeMovie] = useMutation(removeMovieMutation);
   const handleAddToWatchlist = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     addMovie({
       variables: {
         ...movie
       },
+      refetchQueries: [{ query: getMovies }]
+    });
+  };
+
+  const handleRemoveFromWatchlist = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    removeMovie({
+      variables: {
+        ...movie
+      },
+
       refetchQueries: [{ query: getMovies }]
     });
   };
@@ -41,7 +56,9 @@ const Card = ({
     if (parentPage === "watchlist") {
       console.log(parentPage);
       return (
-        <IconDelete onClick={event => handleAddToWatchlist(event)}></IconDelete>
+        <IconDelete
+          onClick={event => handleRemoveFromWatchlist(event)}
+        ></IconDelete>
       );
     }
     return <IconAdd onClick={event => handleAddToWatchlist(event)}></IconAdd>;
