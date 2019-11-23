@@ -53,7 +53,6 @@ const Card = ({
 
   const displayIcons = () => {
     if (parentPage === "watchlist") {
-      console.log(parentPage);
       return (
         <IconDelete
           onClick={event => handleRemoveFromWatchlist(event)}
