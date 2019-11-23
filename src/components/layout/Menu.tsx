@@ -5,9 +5,9 @@ import styled from "styled-components";
 const Menu = () => (
   <List>
     <ActiveLink href="/movies">movies</ActiveLink>
-    <ActiveLink href="/series">series</ActiveLink>
+    {/* <ActiveLink href="/series">series</ActiveLink> */}
     <ActiveLink href="/watchlist">watchlist</ActiveLink>
-    <ActiveLink href="/likelist">likelist</ActiveLink>
+    {/* <ActiveLink href="/likelist">likelist</ActiveLink> */}
   </List>
 );
 
