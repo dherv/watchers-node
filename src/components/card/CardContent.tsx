@@ -1,37 +1,24 @@
-import React, { MouseEvent, FC } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { addMovieMutation, getMovies } from "../../graphql/queries/queries";
+import React, { FC, ReactChildren, ReactNode } from "react";
+import styled, { ThemeProvider, ThemeProviderProps } from "styled-components";
 import { IMovie } from "../../interfaces/Movie";
-import { useMutation } from "@apollo/react-hooks";
-import IconAdd from "../../icons/IconAdd";
+
+import moment from "moment";
 
 const CardContent: FC<{
   movie: IMovie;
   inWatchlist: Boolean;
-  theme: any;
-}> = ({ movie, inWatchlist, theme }) => {
-  const [addMovie] = useMutation(addMovieMutation);
-
-  const handleAddToWatchlist = (event: MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    addMovie({
-      variables: {
-        ...movie
-      },
-      refetchQueries: [{ query: getMovies }]
-    });
-  };
-
+  theme: ThemeProviderProps<{}>;
+  chidlren?: ReactChildren;
+}> = ({ movie, inWatchlist, theme, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <Container>
         <TitleWrapper>
-          <Title>{movie.original_title}</Title>
-          <IconWrapper>
-            {inWatchlist ? null : (
-              <IconAdd onClick={event => handleAddToWatchlist(event)}></IconAdd>
-            )}
-          </IconWrapper>
+          <div>
+            <Title>{movie.original_title}</Title>
+            <small>{moment(movie.release_date).format("LL")}</small>
+          </div>
+          <IconWrapper>{inWatchlist ? null : children}</IconWrapper>
         </TitleWrapper>
       </Container>
     </ThemeProvider>
@@ -39,9 +26,10 @@ const CardContent: FC<{
 };
 
 const Container = styled.div`
+  width: 100%;
   padding: 2rem 1rem;
   background-color: #323534;
-  border-radius: 0 0 10px 10px;
+  border-radius: ${props => props.theme.content.borderRadius};
 `;
 
 const TitleWrapper = styled.div`

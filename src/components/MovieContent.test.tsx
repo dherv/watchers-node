@@ -87,14 +87,16 @@ describe("MovieContent", () => {
         );
       });
       test("should display the movie release date", async () => {
-        const { getByText } = render(
+        const { getAllByText } = render(
           <MockedProvider mocks={[]} addTypename={false}>
             <RouterContext.Provider value={router}>
               <MovieContent {...props} />
             </RouterContext.Provider>
           </MockedProvider>
         );
-        await wait(() => expect(getByText("October 11, 2019")).toBeDefined());
+        await wait(() =>
+          expect(getAllByText("October 11, 2019")).toBeDefined()
+        );
       });
       test("should display the movie overview", async () => {
         const { getByText } = render(

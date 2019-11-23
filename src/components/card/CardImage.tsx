@@ -1,31 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import CardRating from "./CardRating";
+import { IMovie } from "../../interfaces/Movie";
 
-const CardImage = ({
-  src,
-  rating,
-  title,
-  theme
-}: {
-  src: string;
-  rating: number;
-  title: string;
-  theme: any;
-}) => (
+const CardImage = ({ movie, theme }: { movie: IMovie; theme: any }) => (
   <Container>
-    <Image src={src} alt={`${title} poster`}></Image>
-    <CardRating rating={rating} theme={theme} />
+    <Image
+      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+      alt={`${movie.original_title} poster`}
+    ></Image>
+    <CardRating rating={movie.vote_average} theme={theme} />
   </Container>
 );
 
 const Container = styled.div`
   position: relative;
-  border-radius: 10px 10px 0 0;
+  max-width: ${props => props.theme.image.maxWidth};
+  border-radius: ${props => props.theme.image.borderRadius};
 `;
 
 const Image = styled.img`
-  border-radius: 10px 10px 0 0;
+  border-radius: ${props => props.theme.image.borderRadius};
 `;
 
 export { Container, Image };

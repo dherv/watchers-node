@@ -24,7 +24,11 @@ describe("CardContent", () => {
       "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
     release_date: "2019-10-11"
   };
-  const props = { movie, inWatchlist: false, theme: {} };
+  const props = {
+    movie,
+    inWatchlist: false,
+    theme: { content: { borderRadius: "" } }
+  };
   const wrapper = mount(
     <MockedProvider mocks={[]} addTypename={false}>
       <CardContent {...props} />
