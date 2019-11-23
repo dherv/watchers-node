@@ -16,7 +16,6 @@ const MoviePage = () => {
   const [cast, setCast] = useState([]);
   const [director, setDirector] = useState({});
   const [similarMovies, setSimilarMovies] = useState<IMovie[]>([]);
-  const [inWatchlist, setInWatchlist] = useState<boolean>(false);
   const { loading, data } = useQuery<{ movies: IMovie[] }>(getMovies);
 
   const fetchMovie = () => {
@@ -25,7 +24,11 @@ const MoviePage = () => {
     )
       .then(response => response.json())
       .then(response => {
-        setMovie(response);
+        // manipulate genres to match movies given by other api calls
+        const genre_ids = response.genres.map(genre => genre.id);
+        const movie = { ...response };
+        movie.genre_ids = genre_ids;
+        setMovie(movie);
       })
       .catch(error => error);
   };
