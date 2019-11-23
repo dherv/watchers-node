@@ -43,7 +43,6 @@ const Card = ({
       variables: {
         ...movie
       },
-
       refetchQueries: [{ query: getMovies }]
     });
   };

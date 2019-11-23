@@ -7,6 +7,7 @@ import { RouterContext } from "next/dist/next-server/lib/router-context";
 import { render, wait, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { MockedProvider } from "@apollo/react-testing";
+import { getMovies } from "../../graphql/queries/queries";
 
 describe("movie_id", () => {
   const props = {};
@@ -28,6 +29,19 @@ describe("movie_id", () => {
       "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
     release_date: "2019-10-11"
   };
+
+  let mocks = [
+    {
+      request: {
+        query: getMovies
+      },
+      result: {
+        data: {
+          movies: [movie]
+        }
+      }
+    }
+  ];
 
   const similarMovie = {
     ...movie,
@@ -113,7 +127,7 @@ describe("movie_id", () => {
       test("should be contained in a Layout component", async () => {
         expect.assertions(1);
         const { queryByRole } = render(
-          <MockedProvider mocks={[]} addTypename={false}>
+          <MockedProvider mocks={mocks} addTypename={false}>
             <RouterContext.Provider value={router}>
               <MoviePage {...props} />
             </RouterContext.Provider>
@@ -125,7 +139,7 @@ describe("movie_id", () => {
       test("should display one Container styled component after loaded", async () => {
         expect.assertions(1);
         const { container } = render(
-          <MockedProvider mocks={[]} addTypename={false}>
+          <MockedProvider mocks={mocks} addTypename={false}>
             <RouterContext.Provider value={router}>
               <MoviePage {...props} />
             </RouterContext.Provider>
@@ -143,7 +157,7 @@ describe("movie_id", () => {
       test("should display one Card component and pass the movie as props", async () => {
         expect.assertions(1);
         const { getByAltText } = render(
-          <MockedProvider mocks={[]} addTypename={false}>
+          <MockedProvider mocks={mocks} addTypename={false}>
             <RouterContext.Provider value={router}>
               <MoviePage {...props} />
             </RouterContext.Provider>
@@ -163,7 +177,7 @@ describe("movie_id", () => {
         test("should fetch the movie and pass it down to the Card and MovieContent component", async () => {
           expect.assertions(2);
           const { getAllByText } = render(
-            <MockedProvider mocks={[]} addTypename={false}>
+            <MockedProvider mocks={mocks} addTypename={false}>
               <RouterContext.Provider value={router}>
                 <MoviePage {...props} />
               </RouterContext.Provider>
@@ -182,7 +196,7 @@ describe("movie_id", () => {
         test("should fetch movie cast and display their names seperated by a comma", async () => {
           expect.assertions(3);
           const { getByText } = render(
-            <MockedProvider mocks={[]} addTypename={false}>
+            <MockedProvider mocks={mocks} addTypename={false}>
               <RouterContext.Provider value={router}>
                 <MoviePage {...props} />
               </RouterContext.Provider>
@@ -201,7 +215,7 @@ describe("movie_id", () => {
         test("should fetch movie director and display his name", async () => {
           expect.assertions(2);
           const { getByText } = render(
-            <MockedProvider mocks={[]} addTypename={true}>
+            <MockedProvider mocks={mocks} addTypename={false}>
               <RouterContext.Provider value={router}>
                 <MoviePage {...props} />
               </RouterContext.Provider>
@@ -217,7 +231,7 @@ describe("movie_id", () => {
         test("should fetch movie related movies and display the poster and name", async () => {
           expect.assertions(2);
           const { getByText } = render(
-            <MockedProvider mocks={[]} addTypename={false}>
+            <MockedProvider mocks={mocks} addTypename={false}>
               <RouterContext.Provider value={router}>
                 <MoviePage {...props} />
               </RouterContext.Provider>

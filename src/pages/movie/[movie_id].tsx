@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../components/layout/Layout";
 import { useRouter } from "next/router";
 import { IMovie } from "../../interfaces/Movie";
 import Card, { cardRegularRotate } from "../../components/card/Card";
 import styled from "styled-components";
 import MovieContent from "../../components/MovieContent";
+import { useQuery } from "@apollo/react-hooks";
+import { getMovies } from "../../graphql/queries/queries";
 
 // TODO: extract MoviePage to an external component and leave movie_id empty
 const MoviePage = () => {
@@ -15,6 +16,8 @@ const MoviePage = () => {
   const [cast, setCast] = useState([]);
   const [director, setDirector] = useState({});
   const [similarMovies, setSimilarMovies] = useState<IMovie[]>([]);
+  const [inWatchlist, setInWatchlist] = useState<boolean>(false);
+  const { loading, data } = useQuery<{ movies: IMovie[] }>(getMovies);
 
   const fetchMovie = () => {
     return fetch(
@@ -52,6 +55,9 @@ const MoviePage = () => {
       .catch(error => error);
   };
 
+  const checkInWatchlist = (movie_id: number): Boolean =>
+    data.movies.some(item => Number(item.id) === Number(movie_id));
+
   const fetchData = async () => {
     await fetchMovie();
     await fetchCredits();
@@ -64,10 +70,15 @@ const MoviePage = () => {
   }, [movie_id]);
 
   return (
-    loaded && (
+    loaded &&
+    !loading && (
       <Container>
         <CardContainer>
-          <Card movie={movie} theme={cardRegularRotate} />
+          <Card
+            movie={movie}
+            theme={cardRegularRotate}
+            inWatchlist={checkInWatchlist(movie.id)}
+          />
         </CardContainer>
 
         <MovieContent
