@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar component snapshot should match 1`] = `
+<ul
+  className="Menu__List-sc-1iwg4vp-0 cgYyLU"
+>
+  <li
+    className="ActiveLink__ListItem-sc-1si0yf-1 eCdVPD"
+    href="/movies"
+  >
+    <a
+      className="ActiveLink__Anchor-sc-1si0yf-0 bksUxL"
+      height={60}
+      href="/movies"
+      onClick={[Function]}
+    >
+      movies
+    </a>
+  </li>
+  <li
+    className="ActiveLink__ListItem-sc-1si0yf-1 eCdVPD"
+    href="/watchlist"
+  >
+    <a
+      className="ActiveLink__Anchor-sc-1si0yf-0 bksUxL"
+      height={60}
+      href="/watchlist"
+      onClick={[Function]}
+    >
+      watchlist
+    </a>
+  </li>
+</ul>
+`;
