@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
+//import "jest-styled-components";
 
-import CardImage, { Image } from "./CardImage";
-import CardRating from "./CardRating";
+import CardImage, { Image } from "../components/card/CardImage";
+import CardRating from "../components/card/CardRating";
 
 describe("CardImage", () => {
   const movie = {

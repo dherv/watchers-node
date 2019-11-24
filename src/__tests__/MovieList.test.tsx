@@ -1,9 +1,9 @@
 import React from "react";
-import "jest-styled-components";
+//import "jest-styled-components";
 import { render, waitForElement, wait } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+// import "@testing-library/jest-dom/extend-expect";
 
-import MovieList, { Container } from "./MovieList";
+import MovieList, { Container } from "../components/MovieList";
 import moment from "moment";
 import { MockedProvider } from "@apollo/react-testing";
 import { getMovies } from "../graphql/queries/queries";
@@ -129,7 +129,7 @@ describe("MovieList", () => {
         const date_end = moment()
           .add(1, "M")
           .format("YYYY-MM-DD");
-        const url = `https://api.themoviedb.org/3/discover/movie?api_key=7d452802073548c625912b988e9cffd6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=${date_start}&release_date.lte=${date_end}&with_release_type=4`;
+        const url = `https://api.themoviedb.org/3/discover/movie?api_key=7d452802073548c625912b988e9cffd6&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=${date_start}&release_date.lte=${date_end}&with_release_type=4`;
 
         expect(fetch).toHaveBeenCalledWith(url);
       });

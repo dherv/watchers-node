@@ -1,8 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
-import "jest-styled-components";
+//import "jest-styled-components";
 
-import Card, { Container } from "./Card";
+import Card, { Container } from "../components/card/Card";
 import { NextRouter } from "next/router";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import { MockedProvider } from "@apollo/react-testing";

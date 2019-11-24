@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { IMovie } from "../interfaces/Movie";
+import { IMovie } from "../interfaces/IMovie";
 import Card from "./card/Card";
 import styled from "styled-components";
 import moment from "moment";
@@ -22,7 +22,7 @@ const MovieList = () => {
     const date_end = moment()
       .add(1, "M")
       .format("YYYY-MM-DD");
-    const url = `https://api.themoviedb.org/3/discover/movie?api_key=7d452802073548c625912b988e9cffd6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=${date_start}&release_date.lte=${date_end}&with_release_type=4`;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=7d452802073548c625912b988e9cffd6&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=${date_start}&release_date.lte=${date_end}&with_release_type=4`;
     return fetch(url)
       .then(response => response.json())
       .then(({ results }) => {

@@ -1,13 +1,13 @@
 import React from "react";
-import "jest-styled-components";
+// import "jest-styled-components";
 
-import MoviePage, { Container } from "./[movie_id]";
+import MoviePage, { Container } from "../pages/movie/[movie_id]";
 import { NextRouter } from "next/router";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import { render, wait, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { MockedProvider } from "@apollo/react-testing";
-import { getMovies } from "../../graphql/queries/queries";
+import { getMovies } from "../graphql/queries/queries";
 
 describe("movie_id", () => {
   const props = {};

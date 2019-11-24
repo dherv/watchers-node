@@ -1,6 +1,6 @@
-import React, { FC, ReactChildren, ReactNode } from "react";
+import React, { FC, ReactChildren } from "react";
 import styled, { ThemeProvider, ThemeProviderProps } from "styled-components";
-import { IMovie } from "../../interfaces/Movie";
+import { IMovie } from "../../interfaces/IMovie";
 
 import moment from "moment";
 

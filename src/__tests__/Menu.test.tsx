@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
+//import "jest-styled-components";
 
-import Menu, { List } from "./Menu";
-import ActiveLink from "./ActiveLink";
+import Menu, { List } from "../components/layout/Menu";
+import ActiveLink from "../components/layout/ActiveLink";
 
 jest.mock("next/router", () => ({
   useRouter() {

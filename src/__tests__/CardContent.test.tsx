@@ -1,8 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
-import CardContent, { Title } from "./CardContent";
+//import "jest-styled-components";
+import CardContent, { Title } from "../components/card/CardContent";
 import { MockedProvider } from "@apollo/react-testing";
 import { render, fireEvent } from "@testing-library/react";
 

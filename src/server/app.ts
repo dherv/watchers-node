@@ -5,7 +5,8 @@ import GraphQLHTTP from "express-graphql";
 // import socketIo from "socket.io"
 import next, { NextApiRequest, NextApiResponse } from "next";
 import mongoose from "mongoose";
-import schema from "./schema/schema";
+import schema from "../graphql/schema/schema";
+
 const app = express();
 // explicitly create the http server and pass the express app to it
 const server = require("http").Server(app);
@@ -19,18 +20,19 @@ const nextHandler = nextApp.getRequestHandler();
 const dotenv = require("dotenv");
 dotenv.config();
 const port = process.env.PORT;
-
+const mongodbUrl = process.env.NODE_ENV === "production" ? process.env.MONGODB_PROD : process.env.MONGODB_DEV
 // mongodb
-mongoose.connect(
-  "mongodb://root:example@watchers_database:27017/watchers?authSource=admin",
-  {
+if (mongodbUrl) {
+  mongoose.connect(mongodbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
-);
-mongoose.connection.once("open", () => {
-  console.log("connection to database");
-});
+  );
+  mongoose.connection.once("open", () => {
+    console.log("connection to database");
+  });
+}
+
 
 // Sockets - // Sockets - io.sockets.on("connect", socket => {...})
 

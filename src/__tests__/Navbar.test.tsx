@@ -1,11 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
+//import "jest-styled-components";
 
-import Navbar, { Nav } from "./Navbar";
-import Menu from "./Menu";
-import Logo from "./Logo";
+import Navbar, { Nav } from "../components/layout/Navbar";
+import Menu from "../components/layout/Menu";
+import Logo from "../components/layout/Logo";
 
 jest.mock("next/router", () => ({
   useRouter() {

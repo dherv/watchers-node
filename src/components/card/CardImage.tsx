@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import CardRating from "./CardRating";
-import { IMovie } from "../../interfaces/Movie";
+import { IMovie } from "../../interfaces/IMovie";
 
 const CardImage = ({ movie, theme }: { movie: IMovie; theme: any }) => (
   <Container>

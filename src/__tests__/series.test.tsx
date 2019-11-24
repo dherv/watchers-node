@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
+// import "jest-styled-components";
 
-import Series from "./Series";
-import Movies from "./movies";
+import Series from "../pages/series";
+import Movies from "../pages/movies";
 
 describe("Series", () => {
   const props = {};

@@ -1,9 +1,9 @@
 import React from "react";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
+// import "jest-styled-components";
 
-import Index from "./index";
+import Index from "../pages/index";
 import Router from "next/router";
 jest.mock("next/router", () => ({
   push: jest.fn(),

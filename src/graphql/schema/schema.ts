@@ -1,8 +1,8 @@
 // const graphql = require("graphql")
 import * as graphql from "graphql";
-import Movie from "../models/Movie";
+import Movie from "../../server/models/movie";
 import { GraphQLBoolean, GraphQLInt, GraphQLFloat } from "graphql";
-import { IMovie } from "../../interfaces/Movie";
+import { IMovie } from "../../interfaces/IMovie";
 
 const {
   GraphQLObjectType,
@@ -50,8 +50,6 @@ const RootQuery = new GraphQLObjectType({
         return Movie.find({});
       }
     }
-
-
   }
 });
 

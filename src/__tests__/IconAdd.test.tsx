@@ -1,9 +1,9 @@
 import React from "react";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
+//import "jest-styled-components";
 
-import IconAdd from "./IconAdd";
+import IconAdd from "../icons/IconAdd";
 
 describe("IconAdd", () => {
   const props = { onClick: jest.fn() };

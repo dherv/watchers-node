@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
+//import "jest-styled-components";
 
-import Layout, { Container } from "./Layout";
-import Navbar from "./Navbar";
+import Layout, { Container } from "../components/layout/Layout";
+import Navbar from "../components/layout/Navbar";
 
 describe("Layout", () => {
   const props = {
