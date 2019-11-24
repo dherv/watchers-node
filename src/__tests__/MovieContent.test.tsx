@@ -1,7 +1,7 @@
 import React from "react";
-import "jest-styled-components";
+//import "jest-styled-components";
 
-import MovieContent from "./MovieContent";
+import MovieContent from "../components/MovieContent";
 import { render, wait } from "@testing-library/react";
 import { NextRouter } from "next/router";
 import { RouterContext } from "next/dist/next-server/lib/router-context";

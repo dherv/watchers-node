@@ -23,12 +23,10 @@ const port = process.env.PORT;
 const mongodbUrl = process.env.NODE_ENV === "production" ? process.env.MONGODB_PROD : process.env.MONGODB_DEV
 // mongodb
 if (mongodbUrl) {
-  mongoose.connect(
-    mongodbUrl,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    }
+  mongoose.connect(mongodbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
   );
   mongoose.connection.once("open", () => {
     console.log("connection to database");

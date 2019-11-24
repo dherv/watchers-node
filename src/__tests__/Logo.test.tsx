@@ -1,9 +1,9 @@
 import React from "react";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
+//import "jest-styled-components";
 
-import Logo, { Heading } from "./Logo";
+import Logo, { Heading } from "../components/layout/Logo";
 
 describe("Logo component", () => {
   const wrapper = shallow(<Logo />);

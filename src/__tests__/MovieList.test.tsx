@@ -1,9 +1,9 @@
 import React from "react";
-import "jest-styled-components";
+//import "jest-styled-components";
 import { render, waitForElement, wait } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+// import "@testing-library/jest-dom/extend-expect";
 
-import MovieList, { Container } from "./MovieList";
+import MovieList, { Container } from "../components/MovieList";
 import moment from "moment";
 import { MockedProvider } from "@apollo/react-testing";
 import { getMovies } from "../graphql/queries/queries";

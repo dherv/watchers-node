@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardRating snapshot should match 1`] = `
+<div
+  className="CardRating__Container-sc-18uy40q-0 jyUWEm"
+>
+  <div
+    className="CardRating__SquareContainer-sc-18uy40q-1 iOQBiz"
+  >
+    <div
+      className="CardRating__Square-sc-18uy40q-2 CSsDK"
+    />
+    <h5
+      className="CardRating__Rating-sc-18uy40q-3 fMkliS"
+    >
+      8
+    </h5>
+  </div>
+  <div
+    className="CardRating__Border-sc-18uy40q-4 CardRating__BorderDrop-sc-18uy40q-5 gJrUHz"
+  />
+  <div
+    className="CardRating__Border-sc-18uy40q-4 CardRating__BorderRise-sc-18uy40q-6 iDmUIm"
+  />
+</div>
+`;

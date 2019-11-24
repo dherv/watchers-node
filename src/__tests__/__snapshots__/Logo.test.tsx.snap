@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo component snapshot should match 1`] = `
+<h1
+  className="Logo__Heading-sc-1jn2xh4-0 hDqSkM"
+>
+  watchers
+</h1>
+`;

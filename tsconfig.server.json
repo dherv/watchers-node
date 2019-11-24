@@ -69,6 +69,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "build", "pages", "test", ".next"],
+  "exclude": ["node_modules", "pages", ".next"],
   "include": ["**/*.ts"]
 }

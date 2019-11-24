@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActiveLink component snapshot should match 1`] = `
+<ActiveLink
+  href="/movies"
+>
+  <ActiveLink__ListItem
+    href="/movies"
+    path="/movies"
+  >
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [],
+          "componentStyle": ComponentStyle {
+            "componentId": "ActiveLink__ListItem-sc-1si0yf-1",
+            "isStatic": false,
+            "lastClassName": "EmnJH",
+            "rules": Array [
+              "font-weight:100;font-size:1.1rem;margin:0 4rem;position:relative;&::after{content:\\"\\";position:absolute;bottom:0;left:0;right:0;border-width:2px;border-style:solid;border-color:",
+              [Function],
+              ";}",
+            ],
+          },
+          "displayName": "ActiveLink__ListItem",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "ActiveLink__ListItem-sc-1si0yf-1",
+          "target": "li",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+      href="/movies"
+      path="/movies"
+    >
+      <li
+        className="ActiveLink__ListItem-sc-1si0yf-1 EmnJH"
+        href="/movies"
+      >
+        <ActiveLink__Anchor
+          height={60}
+          href="/movies"
+          onClick={[Function]}
+        >
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "ActiveLink__Anchor-sc-1si0yf-0",
+                  "isStatic": false,
+                  "lastClassName": "bksUxL",
+                  "rules": Array [
+                    "height:",
+                    [Function],
+                    "px;line-height:",
+                    [Function],
+                    "px;width:100%;",
+                  ],
+                },
+                "displayName": "ActiveLink__Anchor",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "ActiveLink__Anchor-sc-1si0yf-0",
+                "target": "a",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+            height={60}
+            href="/movies"
+            onClick={[Function]}
+          >
+            <a
+              className="ActiveLink__Anchor-sc-1si0yf-0 bksUxL"
+              height={60}
+              href="/movies"
+              onClick={[Function]}
+            >
+              movies
+            </a>
+          </StyledComponent>
+        </ActiveLink__Anchor>
+      </li>
+    </StyledComponent>
+  </ActiveLink__ListItem>
+</ActiveLink>
+`;

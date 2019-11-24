@@ -1,9 +1,9 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
+//import "jest-styled-components";
 
-import ActiveLink, { ListItem, Anchor } from "./ActiveLink";
+import ActiveLink, { ListItem, Anchor } from "../components/layout/ActiveLink";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import { NextRouter } from "next/router";
 
