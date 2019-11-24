@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { getMovies } from "../graphql/queries/queries";
-import { IMovie } from "../interfaces/Movie";
+import { IMovie } from "../interfaces/IMovie";
 import Card, { cardLandscapeSmall } from "../components/card/Card";
 import styled from "styled-components";
 

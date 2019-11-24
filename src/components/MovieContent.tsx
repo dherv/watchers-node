@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { IMovie } from "../interfaces/Movie";
+import { IMovie } from "../interfaces/IMovie";
 import moment from "moment";
 import Card, { cardSmall } from "./card/Card";
 

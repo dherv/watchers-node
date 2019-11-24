@@ -2,7 +2,7 @@ import React, { MouseEvent } from "react";
 import CardImage from "./CardImage";
 import CardContent from "./CardContent";
 import styled, { ThemeProvider } from "styled-components";
-import { IMovie } from "../../interfaces/Movie";
+import { IMovie } from "../../interfaces/IMovie";
 import { useRouter } from "next/router";
 import IconAdd from "../../icons/IconAdd";
 import { useMutation } from "@apollo/react-hooks";

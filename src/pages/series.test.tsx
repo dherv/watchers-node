@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
 import "jest-styled-components";
 
-import Series from "./Series";
+import Series from "./series";
 import Movies from "./movies";
 
 describe("Series", () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { IMovie } from "../../interfaces/Movie";
+import { IMovie } from "../../interfaces/IMovie";
 import Card, { cardRegularRotate } from "../../components/card/Card";
 import styled from "styled-components";
 import MovieContent from "../../components/MovieContent";

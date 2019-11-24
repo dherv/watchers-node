@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { IMovie } from "../interfaces/Movie";
+import { IMovie } from "../interfaces/IMovie";
 import Card from "./card/Card";
 import styled from "styled-components";
 import moment from "moment";
