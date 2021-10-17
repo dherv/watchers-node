@@ -1,8 +1,7 @@
 // const graphql = require("graphql")
-import * as graphql from "graphql";
-import Movie from "../../server/models/movie";
-import { GraphQLBoolean, GraphQLInt, GraphQLFloat } from "graphql";
-import { IMovie } from "../../interfaces/IMovie";
+import * as graphql from 'graphql';
+import { IMovie } from '../../interfaces/IMovie';
+import Movie from '../../server/models/movie';
 
 const {
   GraphQLObjectType,
@@ -10,7 +9,10 @@ const {
   GraphQLSchema,
   GraphQLID,
   GraphQLList,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLBoolean,
+  GraphQLFloat,
+  GraphQLInt,
 } = graphql;
 
 const MovieType = new GraphQLObjectType({
@@ -29,8 +31,8 @@ const MovieType = new GraphQLObjectType({
     title: { type: new GraphQLNonNull(GraphQLString) },
     video: { type: new GraphQLNonNull(GraphQLBoolean) },
     vote_average: { type: new GraphQLNonNull(GraphQLFloat) },
-    vote_count: { type: new GraphQLNonNull(GraphQLInt) }
-  })
+    vote_count: { type: new GraphQLNonNull(GraphQLInt) },
+  }),
 });
 
 const RootQuery = new GraphQLObjectType({
@@ -40,17 +42,17 @@ const RootQuery = new GraphQLObjectType({
       type: MovieType,
       args: { id: { type: GraphQLID } },
       resolve(_: any, args: { id: string }) {
-        return Movie.findOne({ id: args.id });
-      }
+        return Movie.findOne({ id: Number(args.id) });
+      },
     },
 
     movies: {
       type: new GraphQLList(MovieType),
       resolve() {
         return Movie.find({});
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 const Mutation = new GraphQLObjectType({
@@ -72,7 +74,7 @@ const Mutation = new GraphQLObjectType({
         title: { type: new GraphQLNonNull(GraphQLString) },
         video: { type: new GraphQLNonNull(GraphQLBoolean) },
         vote_average: { type: new GraphQLNonNull(GraphQLFloat) },
-        vote_count: { type: new GraphQLNonNull(GraphQLInt) }
+        vote_count: { type: new GraphQLNonNull(GraphQLInt) },
       },
       resolve(_: any, args: IMovie) {
         let movie = new Movie({
@@ -89,10 +91,10 @@ const Mutation = new GraphQLObjectType({
           title: args.title,
           video: args.video,
           vote_average: args.vote_average,
-          vote_count: args.vote_count
+          vote_count: args.vote_count,
         });
         return movie.save();
-      }
+      },
     },
 
     removeMovie: {
@@ -100,12 +102,12 @@ const Mutation = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(_: any, args: { id: number }) {
         return Movie.findOneAndDelete({ id: args.id });
-      }
-    }
-  })
+      },
+    },
+  }),
 });
 
 export default new GraphQLSchema({
   query: RootQuery,
-  mutation: Mutation
+  mutation: Mutation,
 });

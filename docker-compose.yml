@@ -15,9 +15,10 @@ services:
       - database
   database:
     container_name: watchers_database
-    image: mongo:latest
+    image: mongo:3.4.10
+    command: mongod --dbpath /data/db
     volumes:
-      - ./data/db:/data/db:cached
+      - ./data/mongodb:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
